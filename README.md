@@ -1,3 +1,3 @@
 # NexMove Phonegap Application
 
-## Usage
+This is a basic PhoneGap application built to run in iOS.
