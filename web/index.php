@@ -53,17 +53,17 @@ $app->get('/db/', function() use($app) {
 });
 
 // 'getlocations' route
-$app->post('/getlocations/', function() use($app) {
-  $st = $app['pdo']->prepare('SELECT name FROM test_table');
+$app->get('/getlocations/', function() use($app) {
+  $st = $app['pdo']->prepare('SELECT * FROM locations');
   $st->execute();
 
-  $names = array();
+  $locations = array();
   while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
     $app['monolog']->addDebug('Row ' . $row['name']);
-    $names[] = $row;
+    $locations[] = $row;
   }
 
-  return json_encode($names);
+  return json_encode($locations);
 });
 
 $app->run();

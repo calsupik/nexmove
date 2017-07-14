@@ -218,7 +218,7 @@ var app = {
 					var notification = {
 						id: locations[i].id,
 						title: locations[i].name,
-						text: locations[i].shortDesc
+						text: locations[i].short_desc
 					};
 					
 					//Pushes Notification onto Notifications Array
@@ -252,9 +252,9 @@ var app = {
 		
 		jQuery.ajax({
 			url: databaseString,
-			type: 'POST',
-			data: {lat:currentLat,lng:currentLng,category:category},
-			dataType: 'json',
+			type: 'GET',
+			//data: {lat:currentLat,lng:currentLng,category:category},
+			//dataType: 'json',
 			async: false,				
 			success: function(json) {
 				app.loadLocations(json);
@@ -293,7 +293,7 @@ var app = {
 				'</a>'+
 				'<div class="locations-caption">'+
 					'<h4>'+json[i].name+'</h4>'+
-					'<p class="text-muted">'+json[i].shortDesc+'</p>'+
+					'<p class="text-muted">'+json[i].short_desc+'</p>'+
 				'</div>'+
 			'</div>';
 			
@@ -315,10 +315,10 @@ var app = {
 									'<div class="col-lg-8 col-lg-offset-2">'+
 										'<div class="modal-body">'+
 											'<h2>'+json[i].name+'</h2>'+
-											'<p class="item-intro text-muted">'+json[i].shortDesc+'</p>'+
+											'<p class="item-intro text-muted">'+json[i].short_desc+'</p>'+
 											'<img class="img-responsive" src="'+urlString+'img/'+json[i].img+'" alt="">'+
 											'</br>'+
-											'<p>'+json[i].longDesc+'</p>'+
+											'<p>'+json[i].long_desc+'</p>'+
 											'<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close Details</button>'+
 										'</div>'+
 									'</div>'+
@@ -349,7 +349,7 @@ var app = {
 									'<div class="col-lg-8 col-lg-offset-2">'+
 										'<div class="modal-body">'+
 											'<h2>'+json[i].name+'</h2>'+
-											'<p class="item-intro text-muted">'+json[i].shortDesc+'</p>'+
+											'<p class="item-intro text-muted">'+json[i].short_desc+'</p>'+
 											'<img class="img-responsive" src="'+urlString+'img/'+json[i].img+'" alt="">'+
 											'</br>'+
 											'<p>'+json[i].deal+'</p>'+
@@ -400,7 +400,7 @@ var app = {
 			
 
 			//Create New Location Object
-			var location = new app.Location(json[i].id,json[i].name,json[i].shortDesc,json[i].longDesc,json[i].img,json[i].lat,json[i].lng,json[i].radius);		
+			var location = new app.Location(json[i].id,json[i].name,json[i].short_desc,json[i].long_desc,json[i].img,json[i].lat,json[i].lng,json[i].radius);		
 			
 			//Push Location Object onto Array of Locations
 			locations.push(location);
@@ -416,11 +416,11 @@ var app = {
 	},
 	
 	//Location Object
-	Location: function(id,name,shortDesc,longDesc,img,lat,lng,radius){
+	Location: function(id,name,short_desc,long_desc,img,lat,lng,radius){
 		this.id = id;
 		this.name = name;
-		this.shortDesc = shortDesc;
-		this.longDesc = longDesc;
+		this.short_desc = short_desc;
+		this.long_desc = long_desc;
 		this.img = img;
 		this.lat = lat;
 		this.lng = lng;
