@@ -1,11 +1,9 @@
 /* Custom JavaScript */
 
 //Database Location
-//var urlString = 'http://raspberrypi/NexMove/php/getlocations.php';
-var urlString = 'http://23.117.4.34/NexMove/php/getlocations.php';
+var urlString = 'https://nexmove.herokuapp.com/getlocations.php';
 
-//var databaseString = 'http://raspberrypi/NexMove/';
-var databaseString = 'http://23.117.4.34/NexMove/';
+var databaseString = 'https://nexmove.herokuapp.com/';
 
 //Locations Array
 var locations = [];	

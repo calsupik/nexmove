@@ -1,6 +1,6 @@
 {
-  "name": "Start on Heroku: PHP",
-  "description": "A barebones PHP app that makes use of the Silex web framework",
-  "repository": "https://github.com/heroku/php-getting-started",
+  "name": "NexMove",
+  "description": "This is a basic PhoneGap application built to run in iOS.",
+  "repository": "https://github.com/calsupik/nexmove",
   "addons": []
 }

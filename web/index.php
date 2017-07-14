@@ -15,17 +15,6 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/views',
 ));
 
-// Our web handlers
-$app->get('/', function() use($app) {
-  $app['monolog']->addDebug('logging output.');
-  return str_repeat('Hello', getenv('TIMES'));
-});
-
-$app->get('/cowsay', function() use($app) {
-  $app['monolog']->addDebug('cowsay');
-  return "<pre>".\Cowsayphp\Cow::say("Cool beans")."</pre>";
-});
-
 // Register database
 $dbopts = parse_url(getenv('DATABASE_URL'));
 $app->register(new Csanquer\Silex\PdoServiceProvider\Provider\PDOServiceProvider('pdo'),
@@ -41,6 +30,11 @@ $app->register(new Csanquer\Silex\PdoServiceProvider\Provider\PDOServiceProvider
                )
 );
 
+// Our web handlers
+$app->get('/', function() use($app) {
+  $app['monolog']->addDebug('logging output.');
+});
+
 $app->get('/db/', function() use($app) {
   $st = $app['pdo']->prepare('SELECT name FROM test_table');
   $st->execute();
@@ -51,9 +45,7 @@ $app->get('/db/', function() use($app) {
     $names[] = $row;
   }
 
-  return $app['twig']->render('database.twig', array(
-    'names' => $names
-  ));
+  return $names;
 });
 
 $app->run();
