@@ -38,7 +38,7 @@ $app->get('/', function() use($app) {
   return $app['twig']->render('index.twig');
 });
 
-//DB route
+// 'db' route
 $app->get('/db/', function() use($app) {
   $st = $app['pdo']->prepare('SELECT name FROM test_table');
   $st->execute();
@@ -52,7 +52,7 @@ $app->get('/db/', function() use($app) {
   return json_encode($names);
 });
 
-//DB route
+// 'getlocations' route
 $app->post('/getlocations/', function() use($app) {
   $st = $app['pdo']->prepare('SELECT name FROM test_table');
   $st->execute();
