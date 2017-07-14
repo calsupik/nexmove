@@ -1,9 +1,9 @@
 /* Custom JavaScript */
 
 //Database Location
-var urlString = 'https://nexmove.herokuapp.com/getlocations.php';
+var databaseString = 'https://nexmove.herokuapp.com/getlocations';
 
-var databaseString = 'https://nexmove.herokuapp.com/';
+var urlString = 'https://nexmove.herokuapp.com/';
 
 //Locations Array
 var locations = [];	
@@ -251,7 +251,7 @@ var app = {
 		var currentLng = currentLocation.getCenter().lng();
 		
 		jQuery.ajax({
-			url: urlString,
+			url: databaseString,
 			type: 'POST',
 			data: {lat:currentLat,lng:currentLng,category:category},
 			dataType: 'json',
@@ -289,7 +289,7 @@ var app = {
 						'<div class="locations-hover-content">'+
 						'</div>'+
 					'</div>'+
-					'<img src="'+databaseString+'img/'+json[i].img+'"  class="img-responsive img-rounded" alt="">'+
+					'<img src="'+urlString+'img/'+json[i].img+'"  class="img-responsive img-rounded" alt="">'+
 				'</a>'+
 				'<div class="locations-caption">'+
 					'<h4>'+json[i].name+'</h4>'+
@@ -316,7 +316,7 @@ var app = {
 										'<div class="modal-body">'+
 											'<h2>'+json[i].name+'</h2>'+
 											'<p class="item-intro text-muted">'+json[i].shortDesc+'</p>'+
-											'<img class="img-responsive" src="'+databaseString+'img/'+json[i].img+'" alt="">'+
+											'<img class="img-responsive" src="'+urlString+'img/'+json[i].img+'" alt="">'+
 											'</br>'+
 											'<p>'+json[i].longDesc+'</p>'+
 											'<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close Details</button>'+
@@ -350,7 +350,7 @@ var app = {
 										'<div class="modal-body">'+
 											'<h2>'+json[i].name+'</h2>'+
 											'<p class="item-intro text-muted">'+json[i].shortDesc+'</p>'+
-											'<img class="img-responsive" src="'+databaseString+'img/'+json[i].img+'" alt="">'+
+											'<img class="img-responsive" src="'+urlString+'img/'+json[i].img+'" alt="">'+
 											'</br>'+
 											'<p>'+json[i].deal+'</p>'+
 											'</br>'+
