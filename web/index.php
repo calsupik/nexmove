@@ -45,7 +45,9 @@ $app->get('/db/', function() use($app) {
     $names[] = $row;
   }
 
-  return $names;
+  return $app['twig']->render('database.twig', array(
+    'names' => $names
+  ));
 });
 
 $app->run();
