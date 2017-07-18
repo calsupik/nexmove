@@ -257,7 +257,6 @@ var app = {
 			//dataType: 'json',
 			async: false,				
 			success: function(json) {
-				alert(json);
 				var locations = JSON.parse(json)
 				app.loadLocations(locations);
 			},
