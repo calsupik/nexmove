@@ -257,7 +257,8 @@ var app = {
 			//dataType: 'json',
 			async: false,				
 			success: function(json) {
-				app.loadLocations(json);
+				var locations = JSON.parse(json)
+				app.loadLocations(locations);
 			},
 			error: function(){
 				console.log("AJAX Error Getting Locations");
