@@ -1,11 +1,9 @@
 /* Custom JavaScript */
 
 //Database Location
-//var urlString = 'http://raspberrypi/NexMove/php/getlocations.php';
-var urlString = 'http://23.117.4.34/NexMove/php/getlocations.php';
+var databaseString = 'https://nexmove.herokuapp.com/getlocations';
 
-//var databaseString = 'http://raspberrypi/NexMove/';
-var databaseString = 'http://23.117.4.34/NexMove/';
+var urlString = 'https://nexmove.herokuapp.com/';
 
 //Locations Array
 var locations = [];	
@@ -35,7 +33,7 @@ var app = {
     //Bind any events that are required on startup. 
     //Common events are: 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
+		document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     
     //Device Ready Event Handler
@@ -220,7 +218,7 @@ var app = {
 					var notification = {
 						id: locations[i].id,
 						title: locations[i].name,
-						text: locations[i].shortDesc
+						text: locations[i].short_desc
 					};
 					
 					//Pushes Notification onto Notifications Array
@@ -253,10 +251,10 @@ var app = {
 		var currentLng = currentLocation.getCenter().lng();
 		
 		jQuery.ajax({
-			url: urlString,
-			type: 'POST',
-			data: {lat:currentLat,lng:currentLng,category:category},
-			dataType: 'json',
+			url: databaseString,
+			type: 'GET',
+			//data: {lat:currentLat,lng:currentLng,category:category},
+			//dataType: 'json',
 			async: false,				
 			success: function(json) {
 				app.loadLocations(json);
@@ -291,11 +289,11 @@ var app = {
 						'<div class="locations-hover-content">'+
 						'</div>'+
 					'</div>'+
-					'<img src="'+databaseString+'img/'+json[i].img+'"  class="img-responsive img-rounded" alt="">'+
+					'<img src="'+urlString+'img/'+json[i].img+'"  class="img-responsive img-rounded" alt="">'+
 				'</a>'+
 				'<div class="locations-caption">'+
 					'<h4>'+json[i].name+'</h4>'+
-					'<p class="text-muted">'+json[i].shortDesc+'</p>'+
+					'<p class="text-muted">'+json[i].short_desc+'</p>'+
 				'</div>'+
 			'</div>';
 			
@@ -317,10 +315,10 @@ var app = {
 									'<div class="col-lg-8 col-lg-offset-2">'+
 										'<div class="modal-body">'+
 											'<h2>'+json[i].name+'</h2>'+
-											'<p class="item-intro text-muted">'+json[i].shortDesc+'</p>'+
-											'<img class="img-responsive" src="'+databaseString+'img/'+json[i].img+'" alt="">'+
+											'<p class="item-intro text-muted">'+json[i].short_desc+'</p>'+
+											'<img class="img-responsive" src="'+urlString+'img/'+json[i].img+'" alt="">'+
 											'</br>'+
-											'<p>'+json[i].longDesc+'</p>'+
+											'<p>'+json[i].long_desc+'</p>'+
 											'<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close Details</button>'+
 										'</div>'+
 									'</div>'+
@@ -351,8 +349,8 @@ var app = {
 									'<div class="col-lg-8 col-lg-offset-2">'+
 										'<div class="modal-body">'+
 											'<h2>'+json[i].name+'</h2>'+
-											'<p class="item-intro text-muted">'+json[i].shortDesc+'</p>'+
-											'<img class="img-responsive" src="'+databaseString+'img/'+json[i].img+'" alt="">'+
+											'<p class="item-intro text-muted">'+json[i].short_desc+'</p>'+
+											'<img class="img-responsive" src="'+urlString+'img/'+json[i].img+'" alt="">'+
 											'</br>'+
 											'<p>'+json[i].deal+'</p>'+
 											'</br>'+
@@ -402,7 +400,7 @@ var app = {
 			
 
 			//Create New Location Object
-			var location = new app.Location(json[i].id,json[i].name,json[i].shortDesc,json[i].longDesc,json[i].img,json[i].lat,json[i].lng,json[i].radius);		
+			var location = new app.Location(json[i].id,json[i].name,json[i].short_desc,json[i].long_desc,json[i].img,json[i].lat,json[i].lng,json[i].radius);		
 			
 			//Push Location Object onto Array of Locations
 			locations.push(location);
@@ -418,11 +416,11 @@ var app = {
 	},
 	
 	//Location Object
-	Location: function(id,name,shortDesc,longDesc,img,lat,lng,radius){
+	Location: function(id,name,short_desc,long_desc,img,lat,lng,radius){
 		this.id = id;
 		this.name = name;
-		this.shortDesc = shortDesc;
-		this.longDesc = longDesc;
+		this.short_desc = short_desc;
+		this.long_desc = long_desc;
 		this.img = img;
 		this.lat = lat;
 		this.lng = lng;
