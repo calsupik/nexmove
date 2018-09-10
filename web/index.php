@@ -57,7 +57,7 @@ $app->get('/getlocations/{id}', function($id) use($app) {
 });
 
 // 'getlocations' by type route
-$app->get('/getlocations/{type}', function($type) use($app) {
+$app->get('/getlocationsbytype/{type}', function($type) use($app) {
   $st = $app['pdo']->prepare('select * from locations where type like %' + $type + '%');
   $st->execute();
 
