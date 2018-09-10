@@ -39,14 +39,22 @@ $app->get('/', function() use($app) {
 });
 
 // 'locations' route
-$app->get('/locations/{type}', function($type) use($app) {
-  $query = 'select * from locations';
-  
-  if($type){
-  	$query = 'select * from locations where type = \'' . escape($type) . '\'';
+$app->get('/locations/', function() use($app) {
+  $st = $app['pdo']->prepare('select * from locations');
+  $st->execute();
+
+  $locations = array();
+  while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
+    $app['monolog']->addDebug('Row ' . $row['name']);
+    $locations[] = $row;
   }
-   	
-  $st = $app['pdo']->prepare($query);
+
+  return json_encode($locations);
+});
+
+// 'locations by type' route
+$app->get('/locationsbytype/{type}', function($type) use($app) {
+  $st = $app['pdo']->prepare('select * from locations where type = \'' . escape($type) . '\'');
   $st->execute();
 
   $locations = array();

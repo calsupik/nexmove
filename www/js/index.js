@@ -1,9 +1,7 @@
 /* Custom JavaScript */
 
-//Database Location
-var databaseString = 'https://nexmove.herokuapp.com/locations/';
-
-var urlString = 'https://nexmove.herokuapp.com/';
+//Database Url Location
+var urlString = 'https://nexmove.herokuapp.com';
 
 //Locations Array
 var locations = [];	
@@ -242,15 +240,16 @@ var app = {
 	},
 	
 	//Gets Nearby Locations from Database
-    getNearbyLocations: function(category){		
+    getNearbyLocations: function(type){		
+		var urlStringAddition = type ? '/locationsbytype/' + type : '/locations/' 
 		
 		var currentLat = currentLocation.getCenter().lat();
 		var currentLng = currentLocation.getCenter().lng();
 		
 		jQuery.ajax({
-			url: databaseString + 'type/' + category,
+			url: urlString + urlStringAddition,
 			type: 'GET',
-			//data: {lat:currentLat,lng:currentLng,category:category},
+			//data: {lat:currentLat,lng:currentLng,type:type},
 			//dataType: 'json',
 			async: true,				
 			success: function(json) {
@@ -458,12 +457,12 @@ var app = {
 	},
 	
 	//Filter Locations
-	filter: function(category){
+	filter: function(type){
 		document.getElementById("locations").innerHTML = '';
 		document.getElementById("details").innerHTML = '';
 		document.getElementById("deals").innerHTML = '';
 		map.removeMarkers();
-		app.getNearbyLocations(category);
+		app.getNearbyLocations(type);
 		map.refresh();
 		
 		//Get Current Location	
