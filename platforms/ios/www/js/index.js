@@ -1,7 +1,7 @@
 /* Custom JavaScript */
 
 //Database Location
-var databaseString = 'https://nexmove.herokuapp.com/getlocations/';
+var databaseString = 'https://nexmove.herokuapp.com/locations/';
 
 var urlString = 'https://nexmove.herokuapp.com/';
 
@@ -248,7 +248,7 @@ var app = {
 		var currentLng = currentLocation.getCenter().lng();
 		
 		jQuery.ajax({
-			url: databaseString,
+			url: databaseString + 'type/' + category,
 			type: 'GET',
 			//data: {lat:currentLat,lng:currentLng,category:category},
 			//dataType: 'json',
