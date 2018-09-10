@@ -43,7 +43,7 @@ $app->get('/locations/{id}', function($id) use($app) {
   $query = 'select * from locations';
   
   if($id){
-  	$query = $query . 'where id = ' . escape($id);
+  	$query = 'select * from locations where id = ' . escape($id);
   }
    	
   $st = $app['pdo']->prepare($query);
@@ -63,7 +63,7 @@ $app->get('/locations/type/{type}', function($type) use($app) {
   $query = 'select * from locations';
   
   if($type){
-  	$query = $query . 'where type = \'' . escape($type) . '\'';
+  	$query = 'select * from locations where type = \'' . escape($type) . '\'';
   }
    	
   $st = $app['pdo']->prepare($query);
