@@ -39,12 +39,8 @@ $app->get('/', function() use($app) {
 });
 
 // 'getlocations' route
-$app->get('/getlocations/{id}', function($id) use($app) {
-  if($id){
-  	$st = $app['pdo']->prepare('select * from locations where id = ' + $id);
-  }else{
-  	$st = $app['pdo']->prepare('select * from locations');
-  }
+$app->get('/getlocations/', function($id) use($app) {
+  $st = $app['pdo']->prepare('select * from locations');
   $st->execute();
 
   $locations = array();
@@ -57,8 +53,8 @@ $app->get('/getlocations/{id}', function($id) use($app) {
 });
 
 // 'getlocations' by type route
-$app->get('/getlocationsbytype/{type}', function($type) use($app) {
-  $st = $app['pdo']->prepare('select * from locations where type = \'' + $type + '\'');
+$app->get('/getlocationsbytype/', function() use($app) {
+  $st = $app['pdo']->prepare('select * from locations where type = \'test\'');
   $st->execute();
 
   $locations = array();
