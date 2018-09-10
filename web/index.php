@@ -38,23 +38,27 @@ $app->get('/', function() use($app) {
   return $app['twig']->render('index.twig');
 });
 
-// 'db' route
-$app->get('/db/', function() use($app) {
-  $st = $app['pdo']->prepare('SELECT name FROM test_table');
+// 'getlocations' route
+$app->get('/getlocations/{id}', function($id) use($app) {
+  if($id){
+  	$st = $app['pdo']->prepare('select * from locations where id =' + $id);
+  }else{
+  	$st = $app['pdo']->prepare('select * from locations');
+  }
   $st->execute();
 
-  $names = array();
+  $locations = array();
   while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
     $app['monolog']->addDebug('Row ' . $row['name']);
-    $names[] = $row;
+    $locations[] = $row;
   }
 
-  return json_encode($names);
+  return json_encode($locations);
 });
 
-// 'getlocations' route
-$app->get('/getlocations/', function() use($app) {
-  $st = $app['pdo']->prepare('SELECT * FROM locations');
+// 'getlocations' by type route
+$app->get('/getlocations/{type}', function($type) use($app) {
+  $st = $app['pdo']->prepare('select * from locations where type like %' + $type + '%');
   $st->execute();
 
   $locations = array();
