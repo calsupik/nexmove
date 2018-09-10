@@ -41,7 +41,7 @@ $app->get('/', function() use($app) {
 // 'getlocations' route
 $app->get('/getlocations/{id}', function($id) use($app) {
   if($id){
-  	$st = $app['pdo']->prepare('select * from locations where id =' + $id);
+  	$st = $app['pdo']->prepare('select * from locations where id = ' + $id);
   }else{
   	$st = $app['pdo']->prepare('select * from locations');
   }
@@ -58,7 +58,7 @@ $app->get('/getlocations/{id}', function($id) use($app) {
 
 // 'getlocations' by type route
 $app->get('/getlocationsbytype/{type}', function($type) use($app) {
-  $st = $app['pdo']->prepare('select * from locations where type like %' + $type + '%');
+  $st = $app['pdo']->prepare('select * from locations where type = \'' + $type + '\'');
   $st->execute();
 
   $locations = array();
