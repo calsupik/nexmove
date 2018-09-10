@@ -38,32 +38,12 @@ $app->get('/', function() use($app) {
   return $app['twig']->render('index.twig');
 });
 
-// 'getlocations' route
-$app->get('/locations/{id}', function($id) use($app) {
-  $query = 'select * from locations';
-  
-  if($id){
-  	$query = 'select * from locations where id = ' . escape($id);
-  }
-   	
-  $st = $app['pdo']->prepare($query);
-  $st->execute();
-
-  $locations = array();
-  while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
-    $app['monolog']->addDebug('Row ' . $row['name']);
-    $locations[] = $row;
-  }
-
-  return json_encode($locations);
-});
-
-// 'getlocations' by type route
-$app->get('/locations/type/{type}', function($type) use($app) {
+// 'locations' route
+$app->get('/locations/{type}', function($type) use($app) {
   $query = 'select * from locations';
   
   if($type){
-  	$query = 'select * from locations where type = \'' . escape($type) . '\'';
+  	$query = 'select * from locations where type = \'' . escape($type) '\'';
   }
    	
   $st = $app['pdo']->prepare($query);
