@@ -54,7 +54,7 @@ $app->get('/locations/', function() use($app) {
 
 // 'locations by type' route
 $app->get('/locationsbytype/{type}', function($type) use($app) {
-  $st = $app['pdo']->prepare('select * from locations where type = \'' . escape($type) . '\'');
+  $st = $app['pdo']->prepare('select * from locations where type = \'' . $type . '\'');
   $st->execute();
 
   $locations = array();
