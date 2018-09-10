@@ -1,7 +1,7 @@
 /* Custom JavaScript */
 
 //Database Location
-var databaseString = 'https://nexmove.herokuapp.com/getlocations';
+var databaseString = 'https://nexmove.herokuapp.com/getlocations/';
 
 var urlString = 'https://nexmove.herokuapp.com/';
 
@@ -43,19 +43,15 @@ var app = {
     
     //Function Run on Device Ready
     recievedEvent: function(id) {
-
-        console.log('Received Event: ' + id);
-        
         if(id == 'deviceready'){
         	app.deviceReady();
         }
-
     },
     
     //Device Ready Function
     deviceReady: function() {
-		
-		//Listen for Notification Click			
+      			
+		//Listen for Notification Click	
 		cordova.plugins.notification.local.on("click", function (notification, state) {			
 			var locationID = "#locationDeal" + notification.id;
 					
@@ -99,14 +95,14 @@ var app = {
 			div: '#map',
 			lat: lat,
 			lng: lng,
-			zoom: 16
+			zoom: 18
 		});	
 
 		//Creating Current Location Center
 		currentLocation = map.drawCircle({
 			lat : lat,
 			lng : lng,
-			radius : 10,
+			radius : 4,
 			strokeColor: 'dodgerblue',
 			strokeOpacity: 1,
 			strokeWeight: 2,
@@ -118,7 +114,7 @@ var app = {
 		currentLocationRadius = map.drawCircle({
 			lat : lat,
 			lng : lng,
-			radius : 50,
+			radius : 20,
 			strokeColor: 'dodgerblue',
 			strokeOpacity: 0.0,
 			strokeWeight: 2,
@@ -140,7 +136,7 @@ var app = {
 		  events: {
 			click: function(){
 			  map.setCenter(currentLocation.getCenter().lat(),currentLocation.getCenter().lng());
-			  map.setZoom(16);
+			  map.setZoom(18);
 			}
 		  }
 		});
@@ -149,7 +145,7 @@ var app = {
 		backgroundGeolocation.start();
 		
 		//Turn Off Background Geolocation
-    	// backgroundGeolocation.stop(); 
+    	//backgroundGeolocation.stop(); 
     
 		//Get Current Location	
 		navigator.geolocation.getCurrentPosition(app.onInitSuccess,app.onError);
@@ -215,11 +211,12 @@ var app = {
 					locations[i].setInside();			
 					
 					//Creates Notification Object
-					var notification = {
-						id: locations[i].id,
-						title: locations[i].name,
-						text: locations[i].short_desc
-					};
+      				var notification = {
+      					id: locations[i].id,
+    					title: locations[i].name,
+    					text: locations[i].short_desc,
+    					foreground: true
+    				}
 					
 					//Pushes Notification onto Notifications Array
 					notifications.push(notification);
@@ -232,7 +229,7 @@ var app = {
 			}
 		}
 		
-		//Sends Notifications
+		//Outputs Notifications
 		for(var i=0;i<notifications.length;i++){
 			cordova.plugins.notification.local.schedule(notifications[i]);	
 		}	
@@ -255,7 +252,7 @@ var app = {
 			type: 'GET',
 			//data: {lat:currentLat,lng:currentLng,category:category},
 			//dataType: 'json',
-			async: false,				
+			async: true,				
 			success: function(json) {
 				var locations = JSON.parse(json)
 				app.loadLocations(locations);
