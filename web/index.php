@@ -53,8 +53,8 @@ $app->get('/getlocations/', function($id) use($app) {
 });
 
 // 'getlocations' by type route
-$app->get('/getlocationsbytype/', function() use($app) {
-  $st = $app['pdo']->prepare('select * from locations where type = \'test\'');
+$app->get('/getlocationsbytype/{type}', function($type) use($app) {
+  $st = $app['pdo']->prepare('select * from locations where type = \'' . $type . '\'');
   $st->execute();
 
   $locations = array();
