@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/calsupik/nexmove/issues"
   },
-  "homepage": "https://github.com/calsupik/nexmove"
+  "homepage": "https://github.com/calsupik/nexmove",
+  "dependencies": {}
 }
