@@ -100,25 +100,29 @@ var app = {
 		currentLocation = map.drawCircle({
 			lat : lat,
 			lng : lng,
-			radius : 4,
+			radius : 2,
 			strokeColor: 'dodgerblue',
 			strokeOpacity: 1,
-			strokeWeight: 2,
+			strokeWeight: 1,
 			fillColor: 'dodgerblue',
-			fillOpacity: 1
+			fillOpacity: 1,
+			zIndex: 2
 		});	
 	
 		//Creating Current Location Radius
+		/*
 		currentLocationRadius = map.drawCircle({
 			lat : lat,
 			lng : lng,
-			radius : 20,
-			strokeColor: 'dodgerblue',
-			strokeOpacity: 0.0,
-			strokeWeight: 2,
-			fillColor: 'dodgerblue',
-			fillOpacity: 0.25
-		});	
+			radius : 4,
+			strokeColor: 'white',
+			strokeOpacity: 1,
+			strokeWeight: 1,
+			fillColor: 'white',
+			fillOpacity: 1,
+			zIndex: 2
+		});
+		*/	
 	
 		//Creating Center Map Control
 		map.addControl({
@@ -169,7 +173,7 @@ var app = {
 		currentLocation.setCenter(latlng);
 		
 		//Set currentLocationRadius Position
-		currentLocationRadius.setCenter(latlng);
+		//currentLocationRadius.setCenter(latlng);
 		
 		//Get Nearby Locations from Database based off Current Location
 		app.getNearbyLocations(null);
@@ -189,7 +193,7 @@ var app = {
 		currentLocation.setCenter(latlng);
 		
 		//Set currentLocationRadius Position
-		currentLocationRadius.setCenter(latlng);
+		//currentLocationRadius.setCenter(latlng);
 		
 		//Notifications Array
 		var notifications = [];
@@ -197,15 +201,15 @@ var app = {
 		//Loop through Geofences
 		for(var i=0;i<locations.length;i++){		
 			
-			//Checks Locations within currentLocationRadius
-			if(map.checkGeofence(locations[i].lat,locations[i].lng,currentLocationRadius)){
+			//Checks if current location is within any Locations geofence
+			if(map.checkGeofence(position.coords.latitude,position.coords.longitude,locations[i].geofence)){
 
-				//Alert if location is inside currentLocationRadius
+				//Alert if location is inside location geofence
 				if(locations[i].inside){
-					//Location is already inside currentLocationRadius
+					//Location is already inside geofence
 				}else{
 				
-					//Sets location inside currentLocationRadius
+					//Sets location inside geofence
 					locations[i].setInside();			
 					
 					//Creates Notification Object
@@ -222,7 +226,7 @@ var app = {
 				
 			}else{
 			
-				//Sets location outside currentLocationRadius
+				//Sets location outside geofence
 				locations[i].setOutside();
 			}
 		}
@@ -425,11 +429,22 @@ var app = {
 		this.inside = false;
 		
 		this.marker = map.addMarker({
-				lat: this.lat,
-				lng: this.lng,
-				clickable: true,
-				opacity: 1.0
+			lat: this.lat,
+			lng: this.lng,
+			clickable: true,
+			opacity: 1.0
 		});
+		
+		this.geofence = map.drawCircle({
+			lat : this.lat,
+			lng : this.lng,
+			radius : this.radius || 10,
+			strokeColor: 'dodgerblue',
+			strokeOpacity: 0.0,
+			strokeWeight: 1,
+			fillColor: 'dodgerblue',
+			fillOpacity: 0.25
+		});	
 		
 		this.marker.addListener('click', function() {
 			var locationID = "#location" + id;
@@ -461,7 +476,12 @@ var app = {
 		document.getElementById("locations").innerHTML = '';
 		document.getElementById("details").innerHTML = '';
 		document.getElementById("deals").innerHTML = '';
-		map.removeMarkers();
+		
+		locations.forEach(l => {
+			map.removeMarker(l.marker);
+			map.removePolygon(l.geofence);
+		})
+		
 		app.getNearbyLocations(type);
 		map.refresh();
 		
