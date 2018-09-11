@@ -40,7 +40,7 @@ $app->get('/', function() use($app) {
 
 // 'locations' route
 $app->get('/locations/', function() use($app) {
-  $st = $app['pdo']->prepare('select * from locations where lat != null and lng != null and type != null');
+  $st = $app['pdo']->prepare('select * from locations where lat is not null and lng is not null and type is not null');
   $st->execute();
 
   $locations = array();
@@ -54,7 +54,7 @@ $app->get('/locations/', function() use($app) {
 
 // 'locations by id' route
 $app->get('/locations/id/{id}', function($id) use($app) {
-  $st = $app['pdo']->prepare('select * from locations where lat != null and lng != null and type != null and id = ' . $id);
+  $st = $app['pdo']->prepare('select * from locations where lat is not null and lng is not null and type is not null and id = ' . $id);
   $st->execute();
 
   $locations = array();
@@ -68,7 +68,7 @@ $app->get('/locations/id/{id}', function($id) use($app) {
 
 // 'locations by type' route
 $app->get('/locations/type/{type}', function($type) use($app) {
-  $st = $app['pdo']->prepare('select * from locations where lat != null and lng != null and type != null and type = \'' . $type . '\'');
+  $st = $app['pdo']->prepare('select * from locations where lat is not null and lng is not null and type is not null and type = \'' . $type . '\'');
   $st->execute();
 
   $locations = array();
