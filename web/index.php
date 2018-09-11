@@ -40,7 +40,7 @@ $app->get('/', function() use($app) {
 
 // 'locations' route
 $app->get('/locations/', function() use($app) {
-  $st = $app['pdo']->prepare('select * from locations');
+  $st = $app['pdo']->prepare('select * from locations where lat != null and lng != null and type != null');
   $st->execute();
 
   $locations = array();
