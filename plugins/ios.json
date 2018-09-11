@@ -7,9 +7,6 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-background-mode": {
-            "PACKAGE_NAME": "com.innoficonsulting.nexmove"
-        },
         "cordova-plugin-battery-status": {
             "PACKAGE_NAME": "com.innoficonsulting.nexmove"
         },

@@ -51,9 +51,9 @@ var app = {
       			
 		//Listen for Notification Click	
 		cordova.plugins.notification.local.on("click", function (notification, state) {			
-			var locationID = "#locationDeal" + notification.id;
+			var locationID = "#location" + notification.id;
 					
-			if($("#deals").html()){
+			if($("#details").html()){
 				
 				//Show specific location details				
 				$(locationID).click();
@@ -241,7 +241,7 @@ var app = {
 	
 	//Gets Nearby Locations from Database
     getNearbyLocations: function(type){		
-		var urlStringAddition = type ? '/locations/type' + type : '/locations/' 
+		var urlStringAddition = type ? '/locations/type/' + type : '/locations/' 
 		
 		var currentLat = currentLocation.getCenter().lat();
 		var currentLng = currentLocation.getCenter().lng();
@@ -286,7 +286,7 @@ var app = {
 						'<div class="locations-hover-content">'+
 						'</div>'+
 					'</div>'+
-					'<img src="'+urlString+'img/'+json[i].img+'"  class="img-responsive img-rounded" alt="">'+
+					'<img src="'+urlString+'/images/'+json[i].img+'"  class="img-responsive img-rounded" alt="">'+
 				'</a>'+
 				'<div class="locations-caption">'+
 					'<h4>'+json[i].name+'</h4>'+
@@ -313,7 +313,7 @@ var app = {
 										'<div class="modal-body">'+
 											'<h2>'+json[i].name+'</h2>'+
 											'<p class="item-intro text-muted">'+json[i].short_desc+'</p>'+
-											'<img class="img-responsive" src="'+urlString+'img/'+json[i].img+'" alt="">'+
+											'<img class="img-responsive" src="'+urlString+'/images/'+json[i].img+'" alt="">'+
 											'</br>'+
 											'<p>'+json[i].long_desc+'</p>'+
 											'<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close Details</button>'+
@@ -347,7 +347,7 @@ var app = {
 										'<div class="modal-body">'+
 											'<h2>'+json[i].name+'</h2>'+
 											'<p class="item-intro text-muted">'+json[i].short_desc+'</p>'+
-											'<img class="img-responsive" src="'+urlString+'img/'+json[i].img+'" alt="">'+
+											'<img class="img-responsive" src="'+urlString+'/images/'+json[i].img+'" alt="">'+
 											'</br>'+
 											'<p>'+json[i].deal+'</p>'+
 											'</br>'+
@@ -427,14 +427,14 @@ var app = {
 		this.marker = map.addMarker({
 				lat: this.lat,
 				lng: this.lng,
-				clickable: false,
-				opacity: 0.5
+				clickable: true,
+				opacity: 1.0
 		});
 		
 		this.marker.addListener('click', function() {
-			var locationID = "#locationDeal" + id;
+			var locationID = "#location" + id;
 					
-			if($("#deals").html()){
+			if($("#details").html()){
 				
 				//Show specific location details				
 				$(locationID).click();
@@ -450,8 +450,8 @@ var app = {
 		
 		this.setOutside = function(){
 			this.inside = false;
-			this.marker.setClickable(false);
-			this.marker.setOpacity(0.5);
+			this.marker.setClickable(true);
+			this.marker.setOpacity(1.0);
 		};	
 		
 	},

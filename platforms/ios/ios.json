@@ -13,10 +13,6 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"BackgroundMode\"><param name=\"ios-package\" value=\"APPBackgroundMode\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"Battery\"><param name=\"ios-package\" value=\"CDVBattery\" /></feature>",
                             "count": 1
                         },
@@ -119,10 +115,6 @@
                 "parents": {
                     "UIBackgroundModes": [
                         {
-                            "xml": "<array><string>audio</string></array>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<array><string>location</string></array>",
                             "count": 1
                         }
@@ -151,9 +143,6 @@
     },
     "installed_plugins": {
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.innoficonsulting.nexmove"
-        },
-        "cordova-plugin-background-mode": {
             "PACKAGE_NAME": "com.innoficonsulting.nexmove"
         },
         "cordova-plugin-battery-status": {
@@ -235,15 +224,6 @@
             "pluginId": "cordova-plugin-device",
             "clobbers": [
                 "device"
-            ]
-        },
-        {
-            "file": "plugins/cordova-plugin-background-mode/www/background-mode.js",
-            "id": "cordova-plugin-background-mode.BackgroundMode",
-            "pluginId": "cordova-plugin-background-mode",
-            "clobbers": [
-                "cordova.plugins.backgroundMode",
-                "plugin.backgroundMode"
             ]
         },
         {
@@ -843,7 +823,6 @@
     ],
     "plugin_metadata": {
         "cordova-plugin-device": "1.1.2",
-        "cordova-plugin-background-mode": "0.6.5",
         "cordova-plugin-battery-status": "1.1.2",
         "cordova-plugin-camera": "2.1.1",
         "cordova-plugin-compat": "1.0.0",

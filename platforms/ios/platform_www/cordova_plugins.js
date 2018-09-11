@@ -9,15 +9,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-background-mode/www/background-mode.js",
-        "id": "cordova-plugin-background-mode.BackgroundMode",
-        "pluginId": "cordova-plugin-background-mode",
-        "clobbers": [
-            "cordova.plugins.backgroundMode",
-            "plugin.backgroundMode"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-battery-status/www/battery.js",
         "id": "cordova-plugin-battery-status.battery",
         "pluginId": "cordova-plugin-battery-status",
@@ -616,7 +607,6 @@ module.exports.metadata =
 // TOP OF METADATA
 {
     "cordova-plugin-device": "1.1.2",
-    "cordova-plugin-background-mode": "0.6.5",
     "cordova-plugin-battery-status": "1.1.2",
     "cordova-plugin-camera": "2.1.1",
     "cordova-plugin-compat": "1.0.0",
