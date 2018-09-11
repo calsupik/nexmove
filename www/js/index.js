@@ -241,7 +241,7 @@ var app = {
 	
 	//Gets Nearby Locations from Database
     getNearbyLocations: function(type){		
-		var urlStringAddition = type ? '/locationsbytype/' + type : '/locations/' 
+		var urlStringAddition = type ? '/locations/type' + type : '/locations/' 
 		
 		var currentLat = currentLocation.getCenter().lat();
 		var currentLng = currentLocation.getCenter().lng();

@@ -52,8 +52,22 @@ $app->get('/locations/', function() use($app) {
   return json_encode($locations);
 });
 
+// 'locations by id' route
+$app->get('/locations/id/{id}', function($id) use($app) {
+  $st = $app['pdo']->prepare('select * from locations where id = ' . $id);
+  $st->execute();
+
+  $locations = array();
+  while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
+    $app['monolog']->addDebug('Row ' . $row['name']);
+    $locations[] = $row;
+  }
+
+  return json_encode($locations);
+});
+
 // 'locations by type' route
-$app->get('/locationsbytype/{type}', function($type) use($app) {
+$app->get('/locations/type/{type}', function($type) use($app) {
   $st = $app['pdo']->prepare('select * from locations where type = \'' . $type . '\'');
   $st->execute();
 
