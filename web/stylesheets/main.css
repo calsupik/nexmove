@@ -26,15 +26,9 @@
 }
 .jumbotron .nmlogo {
   display: block;
-  background: -webkit-linear-gradient(left, #E86124 0%, #F89B3B 100%);
-	background: -o-linear-gradient(left, #E86124 0%, #F89B3B 100%);
-	background: linear-gradient(to right, #E86124 0%, #F89B3B 100%);
-  border-radius: 50%;
-  overflow: hidden;
-  width: 100px;
-  height: 100px;
+  width: 25%;
+  height: 25%;
   margin: auto;
-  border: 2px solid white;
 }
 .jumbotron .nmlogo img {
   max-width: 100%;
