@@ -52,9 +52,19 @@ var app = {
 
 		//Listen for Notification Click	
 		cordova.plugins.notification.local.on("click", function (notification, state) {
-			var elm = document.querySelector("#location" + notification.id);
+			var locationID = "#location" + id;
+					
+			if($("#details").html()){
+				
+				//Show specific location details				
+				$(locationID).click();
+				
+			}
+
+			//var elm = document.querySelector("#location" + notification.id);
 
 			//Simulate mouse click
+			/*
 			var evt = new MouseEvent('click', {
 				bubbles: true,
 				cancelable: true,
@@ -64,6 +74,7 @@ var app = {
 			if (document.querySelector("#details").innerHTML) {
 				elm.dispatchEvent(evt);
 			}
+			*/
 		});
 
 		//Top Display Buttons Click Function
@@ -370,9 +381,19 @@ var app = {
 		});
 
 		this.marker.addListener('click', function () {
-			var elm = document.querySelector("#location" + this.id);
+			var locationID = "#location" + id;
+					
+			if($("#details").html()){
+				
+				//Show specific location details				
+				$(locationID).click();
+				
+			}
 
+			//var elm = document.querySelector("#location" + this.id);
+			
 			//Simulate mouse click
+			/*
 			var evt = new MouseEvent('click', {
 				bubbles: true,
 				cancelable: true,
@@ -382,6 +403,7 @@ var app = {
 			if (document.querySelector("#details").innerHTML) {
 				elm.dispatchEvent(evt);
 			}
+			*/
 		});
 
 		this.setInside = function () {
