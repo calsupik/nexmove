@@ -52,7 +52,7 @@ var app = {
 
 		//Listen for Notification Click	
 		cordova.plugins.notification.local.on("click", function (notification, state) {
-			var locationID = "#location" + id;
+			var locationID = "#location" + notification.id;
 					
 			if($("#details").html()){
 				
@@ -381,7 +381,7 @@ var app = {
 		});
 
 		this.marker.addListener('click', function () {
-			var locationID = "#location" + id;
+			var locationID = "#location" + location.id;
 					
 			if($("#details").html()){
 				
