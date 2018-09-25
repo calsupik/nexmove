@@ -113,14 +113,14 @@ var app = {
 			div: '#map',
 			lat: lat,
 			lng: lng,
-			zoom: 19
+			zoom: 18
 		});
 
 		//Creating Current Location Center
 		currentLocation = map.drawCircle({
 			lat: lat,
 			lng: lng,
-			radius: 2,
+			radius: 4,
 			strokeColor: 'dodgerblue',
 			strokeOpacity: 1,
 			strokeWeight: 1,
@@ -133,7 +133,7 @@ var app = {
 		currentLocationRadius = map.drawCircle({
 			lat: lat,
 			lng: lng,
-			radius: 4,
+			radius: 8,
 			strokeColor: 'dodgerblue',
 			strokeOpacity: 0.0,
 			strokeWeight: 1,
@@ -156,7 +156,7 @@ var app = {
 			events: {
 				click: function () {
 					map.setCenter(currentLocation.getCenter().lat(), currentLocation.getCenter().lng());
-					map.setZoom(19);
+					map.setZoom(18);
 				}
 			}
 		});
@@ -362,25 +362,27 @@ var app = {
 		this.radius = parseFloat(location.radius);
 		this.inside = false;
 
+		/*
 		this.marker = map.addMarker({
 			lat: this.lat,
 			lng: this.lng,
 			clickable: true,
 			opacity: 1.0
 		});
+		*/
 
 		this.geofence = map.drawCircle({
 			lat: this.lat,
 			lng: this.lng,
 			radius: this.radius || 10,
-			strokeColor: 'dodgerblue',
-			strokeOpacity: 0.0,
+			strokeColor: '#F89B3B',
+			strokeOpacity: 0.5,
 			strokeWeight: 1,
-			fillColor: 'dodgerblue',
-			fillOpacity: 0.25
+			fillColor: '#F89B3B',
+			fillOpacity: 0.5
 		});
 
-		this.marker.addListener('click', function () {
+		this.geofence.addListener('click', function () {
 			var locationID = "#location" + location.id;
 					
 			if($("#details").html()){
@@ -408,14 +410,14 @@ var app = {
 
 		this.setInside = function () {
 			this.inside = true;
-			this.marker.setClickable(true);
-			this.marker.setOpacity(1.0);
+			//this.marker.setClickable(true);
+			//this.marker.setOpacity(1.0);
 		};
 
 		this.setOutside = function () {
 			this.inside = false;
-			this.marker.setClickable(true);
-			this.marker.setOpacity(1.0);
+			//this.marker.setClickable(true);
+			//this.marker.setOpacity(1.0);
 		};
 
 	},
@@ -426,7 +428,7 @@ var app = {
 		document.getElementById("details").innerHTML = '';
 
 		locations.forEach(function(location){
-			map.removeMarker(location.marker);
+			//map.removeMarker(location.marker);
 			map.removePolygon(location.geofence);
 		});
 
