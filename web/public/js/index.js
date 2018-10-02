@@ -244,7 +244,6 @@ var app = {
 
 	//Gets Nearby Locations from Database
 	getLocations: function (type) {
-		alert('get locations')
 		var urlStringAddition = type ? '/locations/type/' + type : '/locations/';
 
 		var currentLat = currentLocation.getCenter().lat();
@@ -256,7 +255,6 @@ var app = {
 
 		request.onload = function() {
 		  if (request.status >= 200 && request.status < 400) {
-				alert('success')
 				var locations = JSON.parse(request.responseText)
 				app.loadLocations(locations);
 		  } else {
