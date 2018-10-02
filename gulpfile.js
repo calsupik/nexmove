@@ -12,15 +12,15 @@ var indexJS = './web/public/js/index.js';
 gulp.task('dev-html', function() {
   gulp.src(indexHTML)
     .pipe(replace('https://nexmove.herokuapp.com/','../web/public/'))
-    .pipe(replace('<script type="text/javascript" src="cordova.js"></script>', '<!--<script type="text/javascript" src="cordova.js"> </script>-->'))
+    .pipe(replace('<script type="text/javascript" src="cordova.js"></script>','<!--<script type="text/javascript" src="cordova.js"> </script>-->'))
     .pipe(gulp.dest('./www/'))
 });
 
 //Replace JS with dev JS
 gulp.task('dev-js', function() {
   gulp.src(indexJS)
-    .pipe(replace('https://nexmove.herokuapp.com','http://localhost:8080'))
-    .pipe(replace('document.addEventListener(\'deviceready\', app.onDeviceReady, false);', 'app.onDeviceReady();'))
+    .pipe(replace('https://nexmove.herokuapp.com','http://localhost:5000'))
+    .pipe(replace('document.addEventListener(\'deviceready\', app.onDeviceReady, false);','app.onDeviceReady();'))
     .pipe(gulp.dest('./web/public/js/'))
 });
 
@@ -28,14 +28,15 @@ gulp.task('dev-js', function() {
 gulp.task('prod-html', function() {
   gulp.src(indexHTML)
     .pipe(replace('../web/public/','https://nexmove.herokuapp.com/'))
-    .pipe(replace('<!--<script type="text/javascript" src="cordova.js"> </script>-->', '<script type="text/javascript" src="cordova.js"></script>'))
+    .pipe(replace('<!--<script type="text/javascript" src="cordova.js"> </script>-->','<script type="text/javascript" src="cordova.js"></script>'))
     .pipe(gulp.dest('./www/'))
 });
 
 //Replace JS with prod JS
 gulp.task('prod-js', function() {
   gulp.src(indexJS)
-    .pipe(replace('app.onDeviceReady();', 'document.addEventListener(\'deviceready\', app.onDeviceReady, false);'))
+    .pipe(replace('http://localhost:5000','https://nexmove.herokuapp.com'))
+    .pipe(replace('app.onDeviceReady();','document.addEventListener(\'deviceready\', app.onDeviceReady, false);'))
     .pipe(gulp.dest('./web/public/js/'))
 });
 
