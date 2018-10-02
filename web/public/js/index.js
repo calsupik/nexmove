@@ -1,7 +1,7 @@
 /* Custom JavaScript */
 
 //Database Url Location
-var urlString = 'http://localhost:3000';
+var urlString = 'http://localhost:5000';
 
 //Locations Array
 var locations = [];
@@ -53,7 +53,6 @@ var app = {
 	deviceReady: function () {
 
 		//Listen for Notification Click	
-		/*
 		cordova.plugins.notification.local.on("click", function (notification, state) {
 			var locationID = "#location" + notification.id;
 					
@@ -65,20 +64,7 @@ var app = {
 			}
 
 			//var elm = document.querySelector("#location" + notification.id);
-
-			//Simulate mouse click
-			/*
-			var evt = new MouseEvent('click', {
-				bubbles: true,
-				cancelable: true,
-				view: window
-			});
-
-			if (document.querySelector("#details").innerHTML) {
-				elm.dispatchEvent(evt);
-			}
-			*/
-		//});
+		});
 
 		//Top Display Buttons Click Function
 		document.querySelectorAll(".display li").forEach(function(el){
@@ -165,7 +151,7 @@ var app = {
 		});
 
 		//Turn On Background Geolocation
-		//backgroundGeolocation.start();
+		backgroundGeolocation.start();
 
 		//Turn Off Background Geolocation
 		//backgroundGeolocation.stop(); 
@@ -283,23 +269,6 @@ var app = {
 		};
 		
 		request.send();
-
-		/*
-		jQuery.ajax({
-			url: urlString + urlStringAddition,
-			type: 'GET',
-			//data: {lat:currentLat,lng:currentLng,type:type},
-			//dataType: 'json',
-			async: true,
-			success: function (json) {
-				var locations = JSON.parse(json);
-				app.loadLocations(locations);
-			},
-			error: function () {
-				console.log("AJAX Error Getting Locations");
-			}
-		});
-		*/
 
 	},
 
