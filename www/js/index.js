@@ -259,7 +259,32 @@ var app = {
 
 		var currentLat = currentLocation.getCenter().lat();
 		var currentLng = currentLocation.getCenter().lng();
+		var distance = locationsDistance;
+		
+		var request = new XMLHttpRequest();
+		request.open('GET', databaseUrl + '/getlocations', true);
 
+		request.onload = function() {
+		  if (request.status >= 200 && request.status < 400) {
+				var locations = JSON.parse(request.responseText)
+				app.loadLocations(locations);
+				if(onSuccessCallback){
+					onSuccessCallback();
+				}
+		  } else {
+				//Request Error
+				//console.log('Request Error')
+		  }
+		};
+		
+		request.onerror = function() {
+		  //Connection Error
+		  //console.log('Connection Error')
+		};
+		
+		request.send();
+
+		/*
 		jQuery.ajax({
 			url: urlString + urlStringAddition,
 			type: 'GET',
@@ -274,6 +299,7 @@ var app = {
 				console.log("AJAX Error Getting Locations");
 			}
 		});
+		*/
 
 	},
 
@@ -453,3 +479,5 @@ var app = {
 	}
 
 };
+
+app.initialize();
