@@ -31,8 +31,8 @@ gulp.task('prep-prod', [ 'backend', 'prod-js' ])
 
 //Run backend tasks
 gulp.task('backend', function() {
-  return gulp.src("./web/src/**/*.js")
+  return gulp.src("./src/**/*.js")
     .pipe(plumber())
     .pipe(babel())
-    .pipe(gulp.dest("./web/dist"))
+    .pipe(gulp.dest("./dist"))
 })
