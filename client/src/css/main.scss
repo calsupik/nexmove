@@ -1,0 +1,261 @@
+// #5bc0b7;
+// #ffa158
+// #2e529a
+// #c6d5f3
+
+$body_color: #007bff;
+// $body_color: #2e529a;
+$soft_color1: #f8f8f8;
+$soft_color2: #c0c0c0;
+$soft_color3: #f0f0f0;
+$dark_color: #343a40;
+
+html,
+body {
+  -webkit-text-size-adjust: none;    /* This is attempting to not have the text change on a mobile device */
+  min-width: 100%;
+  // color: $body_color;
+  /*
+  background-color:#F9F9F9;
+  background-image:url("images/squairs_icon_opaque.png");
+  background-attachment: fixed;
+  background-position:center center;
+  background-repeat:no-repeat;
+  */
+}
+
+a {
+  &.und-only {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
+
+.extend-vertical {
+  min-height: 100%;
+  height: 100%;
+}
+
+.center-everything {
+  text-align: center;
+
+  > * {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+.light-bg {
+  background: #f5f5f5;
+}
+
+.soft-text {
+  color: $soft_color2;
+}
+
+.subtle-bg {
+  background: $soft_color3;
+}
+
+.no-margin {
+  margin: 0px !important;
+}
+
+table {
+  &.thin {
+    th, td {
+      font-size: 0.8em;
+      padding: 8px;
+    }
+  }
+
+  &.very-thin {
+    th, td {
+      font-size: 0.8em;
+      padding: 3px;
+    }
+  }
+}
+
+.nowrap-ellipses {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.padding-tiny {
+  padding: 3px;
+}
+
+.padding-small {
+  padding: 5px;
+}
+
+.padding-medium {
+  padding: 15px;
+}
+
+.padding-large {
+  padding: 30px;
+}
+
+.margin-small {
+  margin: 5px;
+}
+
+.margin-medium {
+  margin: 15px;
+}
+
+.margin-large {
+  margin: 30px;
+}
+
+.margin-left-small {
+  margin-left: 5px;
+}
+
+.margin-left-medium {
+  margin-left: 15px;
+}
+
+.margin-right-small {
+  margin-right: 5px;
+}
+
+.margin-bottom-small {
+  margin-bottom: 5px;
+}
+
+.margin-bottom-medium {
+  margin-bottom: 15px;
+}
+
+.margin-bottom-large {
+  margin-bottom: 30px;
+}
+
+.margin-top-small {
+  margin-top: 5px;
+}
+
+.margin-top-medium {
+  margin-top: 15px;
+}
+
+.margin-top-large {
+  margin-top: 30px;
+}
+
+.margin-top-xlarge {
+  margin-top: 50px;
+}
+
+.margin-vert-small {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.margin-vert-medium {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.margin-vert-large {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.text-large {
+  font-size: 1.5em;
+}
+
+.text-xlarge {
+  font-size: 1.75em;
+}
+
+.text-xxlarge {
+  font-size: 3em;
+}
+
+.text-xxxlarge {
+  font-size: 5em;
+}
+
+.text-small {
+  font-size: 0.8em;
+}
+
+.text-tiny {
+  font-size: 0.5em;
+}
+
+.side-nav {
+  // border: 1px solid $soft_color2;
+  // background: $soft_color1;
+  height: calc(100vh);
+  padding: 0;
+
+  // > a.active {
+  //   background: $dark_color;
+  //   color: white
+  // }
+  //
+  // .active {
+  //   border: 1px solid $soft_color2;
+  // }
+}
+
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > [class^="col-"],
+  > [class*=" col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.max-150 {
+  max-width: 150px;
+}
+
+.max-200 {
+  max-width: 200px;
+}
+
+.max-250 {
+  max-width: 250px;
+}
+
+.max-300 {
+  max-width: 300px;
+}
+
+@media (min-width: 992px) {
+  #settings-modal {
+    .modal-lg {
+      max-width: 1200px !important;
+    }
+  }
+}
+
+.all-small-inputs {
+  input {
+    font-size: 75%;
+    height: calc(1.8125rem + 2px);
+  }
+}
+
+.remove-icon {
+  color: red;
+  cursor: pointer;
+}
+
+tr.sortable-headers {
+  > th,
+  > td {
+    cursor: pointer;
+  }
+}
