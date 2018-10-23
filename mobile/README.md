@@ -10,6 +10,4 @@ git clone https://github.com/calsupik/nexmove
 npm install
 
 phonegap build ios
-
-gulp prep-dev
 ```
