@@ -53,18 +53,20 @@ var app = {
 	deviceReady: function () {
 
 		//Listen for Notification Click	
-		cordova.plugins.notification.local.on("click", function (notification, state) {
-			var locationID = "#location" + notification.id;
+		if(window.cordova){
+			cordova.plugins.notification.local.on("click", function (notification, state) {
+				var locationID = "#location" + notification.id;
+						
+				if($("#details").html()){
 					
-			if($("#details").html()){
-				
-				//Show specific location details				
-				$(locationID).click();
-				
-			}
+					//Show specific location details				
+					$(locationID).click();
+					
+				}
 
-			//var elm = document.querySelector("#location" + notification.id);
-		});
+				//var elm = document.querySelector("#location" + notification.id);
+			});
+		}
 
 		//Top Display Buttons Click Function
 		document.querySelectorAll(".display li").forEach(function(el){
@@ -151,10 +153,11 @@ var app = {
 		});
 
 		//Turn On Background Geolocation
-		backgroundGeolocation.start();
-
-		//Turn Off Background Geolocation
-		//backgroundGeolocation.stop(); 
+		if(window.backgroundGeolocation){
+			backgroundGeolocation.start();
+			//Turn Off Background Geolocation
+			//backgroundGeolocation.stop(); 
+		}
 
 		//Get Current Location	
 		navigator.geolocation.getCurrentPosition(app.onInitSuccess, app.onError);
@@ -226,7 +229,9 @@ var app = {
 						foreground: true
 					};
 
-					cordova.plugins.notification.local.schedule(notification);
+					if(cordova){
+						cordova.plugins.notification.local.schedule(notification);
+					}
 				}
 
 			} else {
