@@ -1,6 +1,6 @@
 ## Contributing
 
-Thank you for your interest in contributing to the NexMove Phonegap Mobile Application.
+Thank you for your interest in contributing to the NexMove NodeJS Application.
 
 #### Issues
 

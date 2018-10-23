@@ -10,6 +10,7 @@ const postgres = new PostgresClient(postgres_url, { max: 1 })
 ;(async () => {
   try {
     await Promise.all([
+      createUsers(postgres),
       createLocations(postgres)
     ])
 
@@ -21,6 +22,20 @@ const postgres = new PostgresClient(postgres_url, { max: 1 })
     process.exit()
   }
 })()
+
+async function createUsers(postgres) {
+  await postgres.query(`
+    CREATE TABLE IF NOT EXISTS users (
+      id serial PRIMARY KEY,
+      first_name varchar(255),
+      last_name varchar(255),
+      email varchar(255),
+      password varchar(255),
+      created_at timestamp(6) without time zone NOT NULL DEFAULT now(),
+      updated_at timestamp(6) without time zone NOT NULL DEFAULT now()
+    );
+  `)
+}
 
 async function createLocations(postgres) {
   await postgres.query(`

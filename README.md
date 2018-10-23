@@ -1,6 +1,6 @@
-# NexMove PhoneGap Application
+# NexMove NodeJS Application
 
-This is a PhoneGap application built to run in iOS.
+This is a NodeJS application.
 
 ## Development
 
@@ -9,7 +9,7 @@ git clone https://github.com/calsupik/nexmove
 
 npm install
 
-phonegap build ios
-
 gulp prep-dev
+
+npm start
 ```
