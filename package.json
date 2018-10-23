@@ -7,10 +7,11 @@
     "url": "https://github.com/calsupik/nexmove"
   },
   "scripts": {
+    "build": "gulp backend",
     "dev": "nodemon --exec 'nf start'",
-    "migrate": "node web/dist/tasks/migrate",
+    "migrate": "node dist/tasks/migrate",
     "postinstall": "gulp prep-prod",
-    "start": "node web/dist/forever",
+    "start": "node dist/forever",
     "test": "mocha --compilers js:babel-core/register --recursive './src/**/*.spec.js'"
   },
   "author": "Cal Supik",
