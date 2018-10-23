@@ -1,3 +1,6 @@
 /dist
+/mobile/node_modules
+/mobile/platforms
+/mobile/plugins
 /node_modules
 .env
