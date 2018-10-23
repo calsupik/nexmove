@@ -1,7 +1,7 @@
 {
   "name": "NexMove",
-  "description": "This is a NodeJS application.",
-  "repository": "https://github.com/calsupik/nexmove",
+  "description": "This is the NexMove application.",
+  "repository": "https://github.com/nexmove/nexmove",
   "website": "https://nexmove.herokuapp.com/",
   "addons": []
 }

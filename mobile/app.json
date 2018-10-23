@@ -1,7 +1,7 @@
 {
   "name": "NexMove",
   "description": "This is a PhoneGap application built to run in iOS.",
-  "repository": "https://github.com/calsupik/nexmove",
+  "repository": "https://github.com/nexmove/nexmove",
   "website": "https://nexmove.herokuapp.com/",
   "addons": []
 }

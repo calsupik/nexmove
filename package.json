@@ -1,10 +1,10 @@
 {
   "name": "nexmove",
   "version": "1.0.0",
-  "description": "NexMove NodeJS Application",
+  "description": "NexMove Application",
   "repository": {
     "type": "git",
-    "url": "https://github.com/calsupik/nexmove"
+    "url": "https://github.com/nexmove/nexmove"
   },
   "scripts": {
     "build": "gulp backend",
@@ -17,7 +17,7 @@
   "author": "Cal Supik",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/calsupik/nexmove/issues"
+    "url": "https://github.com/nexmove/nexmove/issues"
   },
   "homepage": "https://nexmove.herokuapp.com/",
   "devDependencies": {

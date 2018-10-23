@@ -5,7 +5,7 @@ This is a PhoneGap application built to run in iOS.
 ## Development
 
 ```
-git clone https://github.com/calsupik/nexmove
+git clone https://github.com/nexmove/nexmove
 
 npm install
 
