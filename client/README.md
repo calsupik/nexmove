@@ -1,1 +1,0 @@
-# NexMove VueJS Client App
