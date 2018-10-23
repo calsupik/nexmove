@@ -2,10 +2,16 @@
   "name": "nexmove",
   "version": "1.0.0",
   "description": "NexMove Application",
+  "author": "Cal Supik",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/nexmove/nexmove"
   },
+  "bugs": {
+    "url": "https://github.com/nexmove/nexmove/issues"
+  },
+  "homepage": "https://nexmove.herokuapp.com/",
   "scripts": {
     "build": "gulp backend",
     "dev": "nodemon --exec 'nf start'",
@@ -14,12 +20,6 @@
     "start": "node dist/forever",
     "test": "mocha --compilers js:babel-core/register --recursive './src/**/*.spec.js'"
   },
-  "author": "Cal Supik",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/nexmove/nexmove/issues"
-  },
-  "homepage": "https://nexmove.herokuapp.com/",
   "devDependencies": {
     "foreman": "^2.0.0",
     "mocha": "^3.1.1"

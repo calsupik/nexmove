@@ -1,8 +1,17 @@
 {
-  "name": "euphoritech",
-  "version": "0.1.0",
-  "description": "Easily manage your software product lifecycle throughout your organization.",
-  "author": "Lance Whatley <whatl3y@gmail.com>",
+  "name": "nexmove",
+  "version": "1.0.0",
+  "description": "NexMove VueJS Client Application",
+  "author": "Cal Supik",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nexmove/nexmove"
+  },
+  "bugs": {
+    "url": "https://github.com/nexmove/nexmove/issues"
+  },
+  "homepage": "https://nexmove.herokuapp.com/",
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
@@ -17,7 +26,6 @@
     "style-loader": "^0.20.3",
     "vue": "^2.5.13",
     "vue-router": "^2.6.0",
-    "vue-typeahead": "git+https://github.com/whatl3y/vue-typeahead.git",
     "vuejs-datepicker": "^0.9.3",
     "vuex": "^3.0.1"
   },

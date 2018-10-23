@@ -1,1 +1,1 @@
-# euphoritech client app
+# NexMove VueJS Client App
