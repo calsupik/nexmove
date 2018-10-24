@@ -9,6 +9,8 @@ git clone https://github.com/nexmove/nexmove
 
 npm install
 
+npm run migrate
+
 gulp prep-dev
 
 npm start

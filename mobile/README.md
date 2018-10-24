@@ -9,5 +9,7 @@ git clone https://github.com/nexmove/nexmove
 
 npm install
 
+cd mobile
+
 phonegap build ios
 ```
