@@ -48,8 +48,14 @@ gulp.task('backend', function() {
     .pipe(gulp.dest("./dist"))
 })
 
+//Update nexmove.js task
+gulp.task('prod-api-js', function() {
+  return gulp.src("./dist/js/nexmove.js")
+    .pipe(gulp.dest("./public/api"))
+})
+
 //Run dev tasks
 gulp.task('prep-dev', [ 'dev-html', 'dev-js', 'backend' ])
 
 //Run prod tasks
-gulp.task('prep-prod', [ 'prod-html', 'prod-js', 'backend' ])
+gulp.task('prep-prod', [ 'prod-html', 'prod-js', 'backend', 'prod-api-js' ])

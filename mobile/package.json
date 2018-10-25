@@ -1,7 +1,7 @@
 {
-  "name": "nexmove",
+  "name": "mobile",
   "version": "1.0.0",
-  "description": "NexMove Application",
+  "description": "A Phonegap mobile application for NexMove",
   "repository": {
     "type": "git",
     "url": "https://github.com/nexmove/nexmove"
