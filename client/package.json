@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "1.0.0",
-  "description": "A VueJS frontend for NexMove",
+  "description": "A Vue.js frontend for NexMove",
   "author": "Cal Supik",
   "private": true,
   "scripts": {

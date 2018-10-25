@@ -1,6 +1,6 @@
 # NexMove Application
 
-This is an application built with a VueJS frontend, NodeJS backend and PhoneGap mobile application.
+This is an application built with a Vue.js frontend, Node.js backend and PhoneGap mobile application.
 
 ## Development
 

@@ -1,6 +1,6 @@
-# NexMove VueJS Application
+# NexMove Vue.js Application
 
-> A VueJS frontend application for NexMove
+> A Vue.js frontend application for NexMove
 
 ## Build Setup
 
