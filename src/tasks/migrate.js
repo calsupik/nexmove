@@ -11,6 +11,7 @@ const postgres = new PostgresClient(postgres_url, { max: 1 })
   try {
     await Promise.all([
       createUsers(postgres),
+      createUsersIndexes(postgres),
       createLocations(postgres)
     ])
 
@@ -26,15 +27,25 @@ const postgres = new PostgresClient(postgres_url, { max: 1 })
 async function createUsers(postgres) {
   await postgres.query(`
     CREATE TABLE IF NOT EXISTS users (
-      id serial PRIMARY KEY,
+      id bigserial PRIMARY KEY,
+      name varchar(255),
+      username_email varchar(255) not null,
+      password_hash varchar(255),
       first_name varchar(255),
       last_name varchar(255),
-      email varchar(255),
-      password varchar(255),
+      needs_password_reset boolean,
+      last_password_reset timestamp(6),
+      last_login timestamp(6),
+      last_session_refresh timestamp(6),
+      num_logins integer,
       created_at timestamp(6) without time zone NOT NULL DEFAULT now(),
       updated_at timestamp(6) without time zone NOT NULL DEFAULT now()
     );
   `)
+}
+
+async function createUsersIndexes(postgres) {
+  await postgres.query(`CREATE INDEX CONCURRENTLY IF NOT EXISTS users_username_email_idx on users (username_email)`)
 }
 
 async function createLocations(postgres) {

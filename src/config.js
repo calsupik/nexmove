@@ -12,6 +12,16 @@ export default {
     HOST:             process.env.HOSTNAME || "http://localhost:8080"
   },
 
+  auth: {
+    GLOBAL_ADMIN: process.env.GLOBAL_ADMIN,
+    GLOBAL_PASSWORD: process.env.GLOBAL_PASSWORD
+  },
+
+  session: {
+    sessionSecret: process.env.SESSION_SECRET,
+    sessionCookieKey: process.env.SESSION_COOKIE_KEY
+  },
+
   newrelic: {
     key:    process.env.NEWRELIC_KEY,
     level:  process.env.NEWRELIC_LEVEL || 'info'
