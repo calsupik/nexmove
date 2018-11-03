@@ -2,7 +2,7 @@ import DatabaseModel from './DatabaseModel'
 import Encryption from '../Encryption'
 import SessionHandler from '../SessionHandler'
 
-const encryption = new Encryption()
+//const encryption = new Encryption()
 
 export default function Users(postgres, session=null) {
   const factoryToExtend = DatabaseModel(postgres, 'users')
