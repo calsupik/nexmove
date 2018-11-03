@@ -21,8 +21,8 @@
     "test": "mocha --compilers js:babel-core/register --recursive './src/**/*.spec.js'"
   },
   "devDependencies": {
-    "foreman": "^2.0.0",
-    "mocha": "^3.1.1"
+    "foreman": "^3.0.1",
+    "mocha": "^5.2.0"
   },
   "dependencies": {
     "@babel/core": "^7.1.2",
@@ -39,7 +39,7 @@
     "express": "^4.16.4",
     "forever": "^0.15.3",
     "forever-monitor": "^1.7.1",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-plumber": "^1.1.0",
     "gulp-replace": "^0.6.1",
@@ -48,6 +48,7 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "pg": "^6.1.5",
+    "pg-query-parser": "^0.2.3",
     "pg-query-stream": "^1.0.0",
     "pug": "^2.0.0-rc.3",
     "throng": "^4.0.0",
