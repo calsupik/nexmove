@@ -5,6 +5,10 @@ import App from './App'
 import router from './router'
 import store from './vuex/store'
 
+import fetchDefaults from 'fetch-defaults'
+
+window.nexmoveFetch = fetchDefaults(fetch, { credentials: 'same-origin' })
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

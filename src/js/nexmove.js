@@ -1,7 +1,7 @@
 /* Custom JavaScript */
 
 //Database Url Location
-var urlString = 'https://nexmove.herokuapp.com';
+var urlString = 'http://localhost:5000';
 
 //Locations Array
 var locations = [];
@@ -34,7 +34,7 @@ var app = {
 	//Bind any events that are required on startup. 
 	//Common events are: 'load', 'deviceready', 'offline', and 'online'.
 	bindEvents: function () {
-		document.addEventListener('deviceready', app.onDeviceReady, false);
+		app.onDeviceReady();
 	},
 
 	//Device Ready Event Handler

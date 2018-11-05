@@ -18,8 +18,8 @@ export default {
   },
 
   session: {
-    sessionSecret: process.env.SESSION_SECRET,
-    sessionCookieKey: process.env.SESSION_COOKIE_KEY
+    sessionSecret: process.env.SESSION_SECRET || 'nexmove05041992',
+    sessionCookieKey: process.env.SESSION_COOKIE_KEY || 'nexmove'
   },
 
   newrelic: {

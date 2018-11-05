@@ -1,9 +1,14 @@
-/*
 import { handleFetchResponse } from './ApiHelpers'
 
 export default {
+  async getLoggedInUser() {
+    const response = await nexmoveFetch(`/auth/session`)
+    return await handleFetchResponse(response)
+  }
+
+  /*
   async setRedirect(targetUrl) {
-    const response = await euphoritechFetch(`/api/1.0/auth/redirect/set`, {
+    const response = await nexmoveFetch(`/api/1.0/auth/redirect/set`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ target: targetUrl })
@@ -12,7 +17,7 @@ export default {
   },
 
   async setSession(key, data) {
-    const response = await euphoritechFetch(`/api/1.0/auth/session/set`, {
+    const response = await nexmoveFetch(`/api/1.0/auth/session/set`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ key, data })
@@ -21,7 +26,7 @@ export default {
   },
 
   async forgotPassword(email) {
-    const response = await euphoritechFetch(`/api/1.0/auth/password/forgot`, {
+    const response = await nexmoveFetch(`/api/1.0/auth/password/forgot`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email })
@@ -30,7 +35,7 @@ export default {
   },
 
   async resetPassword({ current_password, new_password }) {
-    const response = await euphoritechFetch(`/api/1.0/auth/password/reset`, {
+    const response = await nexmoveFetch(`/api/1.0/auth/password/reset`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ current_password, new_password })
@@ -39,17 +44,17 @@ export default {
   },
 
   async getLoggedInUser() {
-    const response = await euphoritechFetch(`/api/1.0/auth/session`)
+    const response = await nexmoveFetch(`/api/1.0/auth/session`)
     return await handleFetchResponse(response)
   },
 
   async checkUsernameAvailability(username) {
-    const response = await euphoritechFetch(`/api/1.0/auth/username/available?username=${encodeURIComponent(username)}`)
+    const response = await nexmoveFetch(`/api/1.0/auth/username/available?username=${encodeURIComponent(username)}`)
     return await handleFetchResponse(response)
   },
 
   async getLoggedInUsersIntegrations() {
-    const response = await euphoritechFetch(`/api/1.0/auth/integrations/get`)
+    const response = await nexmoveFetch(`/api/1.0/auth/integrations/get`)
     return await handleFetchResponse(response)
   },
 
@@ -60,5 +65,5 @@ export default {
   isValidTeamId(id='') {
     return /^[a-z\d]{5,8}$/.test((id || '').toLowerCase())
   }
+  */
 }
-*/
