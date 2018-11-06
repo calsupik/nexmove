@@ -1,9 +1,9 @@
 import { handleFetchResponse } from './ApiHelpers'
 
 export default {
-  async getLoggedInUser() {
-    const response = await nexmoveFetch(`/auth/session`)
-    return await handleFetchResponse(response)
+  async getLoggedInUser () {
+    const response = await window.nexmoveFetch(`/auth/session`)
+    return handleFetchResponse(response)
   }
 
   /*

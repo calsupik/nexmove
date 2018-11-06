@@ -7,6 +7,12 @@ import store from './vuex/store'
 
 import fetchDefaults from 'fetch-defaults'
 
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+Vue.use(BootstrapVue)
+
 window.nexmoveFetch = fetchDefaults(fetch, { credentials: 'same-origin' })
 
 Vue.config.productionTip = false

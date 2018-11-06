@@ -11,9 +11,7 @@ export default {
     state.isLoggedIn = isLoggedIn
   },
 
-  SET_SESSION_INFO (state, {
-    user
-  }) {
+  SET_SESSION_INFO (state, {user}) {
     state.auth.user = Object.assign(state.auth.user || {}, user)
     console.log('STATE', state)
   }

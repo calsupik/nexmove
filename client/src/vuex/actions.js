@@ -2,11 +2,6 @@ import ApiAuth from '../factories/ApiAuth'
 
 export default {
   async init ({ commit, state }) {
-    const isLoggedIn = state.isLoggedIn
-    if (!isLoggedIn) {
-      return false
-    }
-
     const responses = await Promise.all([
       ApiAuth.getLoggedInUser()
     ].map(p => p.catch(e => e)))
@@ -18,9 +13,15 @@ export default {
 
     const sessionInfo = responses[0]
 
-    commit('SET_SESSION_INFO', {
-      user: sessionInfo.session.user
-    })
+    if (sessionInfo.session.user) {
+      commit('CHECK_LOGGED_IN', true)
+
+      commit('SET_SESSION_INFO', {
+        user: sessionInfo.session.user
+      })
+    }
+
+    commit('APP_NO_LONGER_LOADING')
   },
 
   redirectToHome () {
@@ -28,7 +29,7 @@ export default {
   },
 
   redirectToLogin () {
-    window.vueRouter.push('/gatekeeper/login')
+    window.vueRouter.push('/login')
   },
 
   redirectToPasswordReset () {

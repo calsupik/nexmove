@@ -1,13 +1,16 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <h3 v-if="$store.state.isLoading">Loading...</h3>
+    <router-view v-else/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  async created () {
+    await this.$store.dispatch('init')
+  }
 }
 </script>
 

@@ -1,4 +1,4 @@
-export async function handleFetchResponse(response, type='json') {
+export async function handleFetchResponse (response, type = 'json') {
   const typeParser = (type) ? await response[type]() : null
   if (response.status >= 400) {
     let errorInfo = null
@@ -8,8 +8,8 @@ export async function handleFetchResponse(response, type='json') {
       } else {
         errorInfo = typeParser.error
       }
-    } finally {
-      throw new Error(errorInfo || response)
+    } catch (e) {
+      throw new Error(errorInfo || response || e)
     }
   } else {
     return typeParser

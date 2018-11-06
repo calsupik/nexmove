@@ -1,6 +1,7 @@
 <template>
   <div class="dashboard">
     <h1>Dashboard</h1>
+    <b-button href="/auth/logout">Logout</b-button>
   </div>
 </template>
 
@@ -16,8 +17,8 @@ export default {
   methods: {
 
   },
-  async mounted () {
-    if(!this.$store.state.isLoggedIn){
+  async created () {
+    if (!this.$store.state.isLoggedIn || !this.$store.state.auth.user) {
       this.$router.push('login')
     }
   }

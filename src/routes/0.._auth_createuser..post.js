@@ -38,6 +38,6 @@ export default async function AuthCreateAccount(req, res) {
 
   } catch(err) {
     log.error("Error", err)
-    res.status(500).json({ error: res.__(`There was a problem trying to create your account. Please try again.`) })
+    res.status(500).json({ error: err })
   }
 }
