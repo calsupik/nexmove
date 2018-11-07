@@ -28,7 +28,7 @@ export default {
     return routes.sort((r1, r2) => r1.order - r2.order)
   },
 
-  checkAndRedirect(req, res, defaultRedirectPath='/', queryStringObj=null) {
+  checkAndRedirect(req, res, defaultRedirectPath='/app', queryStringObj=null) {
     let queryString = ''
     if (queryStringObj)
       queryString = qs.stringify(queryStringObj)
