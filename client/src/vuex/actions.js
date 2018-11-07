@@ -13,7 +13,7 @@ export default {
 
     const sessionInfo = responses[0]
 
-    if (sessionInfo.session.user) {
+    if (sessionInfo && sessionInfo.session && sessionInfo.session.user) {
       commit('CHECK_LOGGED_IN', true)
 
       commit('SET_SESSION_INFO', {
