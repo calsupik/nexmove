@@ -8,7 +8,7 @@ import config from '../config'
 const log       = bunyan.createLogger(config.logger.options)
 const postgres  = new PostgresClient()
 
-export default async function AuthCreateAccount(req, res) {
+export default async function AuthCreateUser(req, res) {
   try {
     const username        = req.body.username
     const password        = req.body.password

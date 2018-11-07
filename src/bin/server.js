@@ -82,12 +82,13 @@ async function startApp() {
     const routePath = path.join(__dirname, '..', 'routes')
     const aRoutes = fs.readdirSync(routePath).filter(file => fs.lstatSync(path.join(routePath, file)).isFile())
     let oRoutes = {}
-    aRoutes.forEach(r => oRoutes[r] = require(path.join('..', 'routes', r)))
+    aRoutes.forEach(r => oRoutes[r] = require(path.join('..', 'routes', r)).default)
 
     //setup route handlers in the express app
     routes.forEach(route => {
       try {
-        app[route.verb.toLowerCase()](route.path, oRoutes[route.file].default)
+        const routeHandler = (oRoutes[route.file].toString() === '[object Object]' && oRoutes[route.file].createRouteWithOptions) ? oRoutes[route.file].createRouteWithOptions() : oRoutes[route.file]
+        app[route.verb.toLowerCase()](route.path, routeHandler)
         log.debug(`Successfully bound route to express; method: ${route.verb}; path: ${route.path}`)
       } catch(err) {
         log.error(err, `Error binding route to express; method: ${route.verb}; path: ${route.path}`)

@@ -37,5 +37,30 @@ export default {
       return res.redirect((queryString) ? `${req.session.returnTo}?${queryString}` : req.session.returnTo)
 
     res.redirect((queryString) ? `${defaultRedirectPath}?${queryString}` : defaultRedirectPath)
+  },
+
+  requireAuthExpressMiddleware() {
+    return function(req, res, next) {
+      const currentPath = req.path
+      if (routesNotNeedingAuth().includes(currentPath))
+        return next()
+
+      if (Users(null, req.session).isLoggedIn())
+        return next()
+
+      // TODO: Support API key authentication here
+      const apiKeyProvided = req.headers['x-api-key']
+      if (false)
+        return next()
+
+      return res.status(401).json({ error: 'Invalid authentication information.' })
+    }
   }
+}
+
+function routesNotNeedingAuth() {
+  return [
+    '/api/1.0/auth/password/forgot',
+    '/api/1.0/auth/username/available'
+  ]
 }
