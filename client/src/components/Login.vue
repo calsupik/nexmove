@@ -5,7 +5,7 @@
     <b-row class="justify-content-md-center">
       <b-card-group deck>
         <b-card>
-          <b-form action="auth/local" method="post">
+          <b-form action="../auth/local" method="post">
             <h3>Login</h3>
             <b-form-group>
               <b-form-input type="email" placeholder="Enter Email" name="username" required></b-form-input>
@@ -19,7 +19,7 @@
           </b-form>
         </b-card>
         <b-card>
-          <b-form action="auth/createuser" method="post">
+          <b-form action="../auth/createuser" method="post">
             <h4>Create Account</h4>
             <b-form-group>
               <b-form-input type="email" placeholder="Enter Email" name="username" required></b-form-input>
