@@ -1,4 +1,7 @@
+import Routes from '../libs/Routes'
+
 export default async function Logout(req, res) {
   req.session.destroy()
-  res.redirect('/')
+  Routes.checkAndRedirect(req, res)
+  //res.redirect('/app')
 }

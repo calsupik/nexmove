@@ -3,6 +3,7 @@ import Errors from '../errors'
 import PostgresClient from '../libs/PostgresClient'
 import LoginHandler from '../libs/LoginHandler'
 import Users from '../libs/models/Users'
+import Routes from '../libs/Routes'
 import config from '../config'
 
 const log       = bunyan.createLogger(config.logger.options)
@@ -34,7 +35,8 @@ export default async function AuthCreateUser(req, res) {
 
     const login = LoginHandler(postgres, req.session)
     await login.standardLogin(userRecord)
-    res.redirect('/')
+    Routes.checkAndRedirect(req, res)
+    //res.redirect('/app')
 
   } catch(err) {
     log.error("Error", err)
