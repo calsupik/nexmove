@@ -51,7 +51,7 @@ gulp.task('backend', function() {
 //Update nexmove.js task
 gulp.task('prod-api-js', function() {
   return gulp.src("./dist/js/nexmove.js")
-    .pipe(gulp.dest("./public2/script"))
+    .pipe(gulp.dest("./public/script"))
 })
 
 //Run dev tasks
