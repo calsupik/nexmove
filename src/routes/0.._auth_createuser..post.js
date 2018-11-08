@@ -36,7 +36,6 @@ export default async function AuthCreateUser(req, res) {
     const login = LoginHandler(postgres, req.session)
     await login.standardLogin(userRecord)
     Routes.checkAndRedirect(req, res)
-    //res.redirect('/app')
 
   } catch(err) {
     log.error("Error", err)
