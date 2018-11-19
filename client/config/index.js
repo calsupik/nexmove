@@ -11,7 +11,10 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/': 'http://localhost:8080'
+      '/api': 'http://localhost:8000',
+      '/auth': 'http://localhost:8000',
+      '/logout': 'http://localhost:8000',
+      '/public': 'http://localhost:8000'
     },
 
     // Various Dev Server settings
@@ -47,12 +50,12 @@ module.exports = {
 
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, '../../public/app/index.html'),
+    index: path.resolve(__dirname, '../../public/index.html'),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../../public/app'),
-    assetsSubDirectory: '',
-    assetsPublicPath: '',
+    assetsRoot: path.resolve(__dirname, '../../'),
+    assetsSubDirectory: 'public',
+    assetsPublicPath: '/',
 
     /**
      * Source Maps

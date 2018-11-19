@@ -3,6 +3,6 @@ export default class UsernameAlreadyExists extends Error {
     super(...args)
     Error.captureStackTrace(this, UsernameAlreadyExists)
 
-    this.redirectRoute = '/autherror/usernamealreadyexists'
+    this.redirectRoute = '/#/autherror/usernamealreadyexists'
   }
 }

@@ -1,34 +1,32 @@
 <template>
   <div class="dashboard">
     <nav-bar></nav-bar>
-    <h1>Dashboard</h1>
-    <h4>Locations</h4>
-    <b-table v-if="locations" striped hover :items="locations"></b-table>
+    <div class="container">
+      <h1>Dashboard</h1>
+      <locations></locations>
+    </div>
   </div>
 </template>
 
 <script>
-import Locations from '../factories/Locations'
 import NavBar from './Navbar'
+import Locations from './Locations'
 
 export default {
   name: 'Dashboard',
   components: {
-    navBar: NavBar
+    navBar: NavBar,
+    locations: Locations
   },
   data () {
-    return {
-      locations: null
-    }
+    return {}
   },
   computed: {},
-  methods: {
-    async getLocations () {
-      this.locations = await Locations.getLocations()
-    }
-  },
+  methods: {},
   async mounted () {
-    await this.getLocations()
+    if (!this.$store.state.isLoggedIn || !this.$store.state.auth.user) {
+      this.$router.push('login')
+    }
   },
   async created () {
     if (!this.$store.state.isLoggedIn || !this.$store.state.auth.user) {
@@ -41,6 +39,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1 {
-  padding: 20px
+  margin: 20px
 }
 </style>

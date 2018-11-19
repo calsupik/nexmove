@@ -3,6 +3,6 @@ export default class NoUserRecord extends Error {
     super(...args)
     Error.captureStackTrace(this, NoUserRecord)
 
-    this.redirectRoute = '/autherror/nouser'
+    this.redirectRoute = '/#/autherror/nouser'
   }
 }

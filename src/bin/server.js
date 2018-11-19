@@ -112,6 +112,12 @@ async function startApp() {
       }
     })
 
+    // Express error handling
+    app.use(function ExpressErrorHandler(err, req, res, next) {
+      log.error('Express error handling', err)
+      res.redirect(err.redirectRoute || '/')
+    })
+
     passport.serializeUser((user, done) => done(null, user))
     passport.deserializeUser((user, done) => done(null, user))
 

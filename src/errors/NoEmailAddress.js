@@ -3,6 +3,6 @@ export default class NoEmailAddress extends Error {
     super(...args)
     Error.captureStackTrace(this, NoEmailAddress)
 
-    this.redirectRoute = '/autherror/noemail'
+    this.redirectRoute = '/#/autherror/noemail'
   }
 }

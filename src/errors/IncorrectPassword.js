@@ -3,6 +3,6 @@ export default class IncorrectPassword extends Error {
     super(...args)
     Error.captureStackTrace(this, IncorrectPassword)
 
-    this.redirectRoute = '/autherror/incorrectpassword'
+    this.redirectRoute = '/#/autherror/incorrectpassword'
   }
 }

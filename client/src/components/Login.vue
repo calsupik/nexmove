@@ -2,6 +2,7 @@
   <b-container fluid>
     <img src="../assets/logo.png">
     <h1>Welcome to NexMove</h1>
+    <p> {{error}} </p>
     <b-row class="justify-content-md-center">
       <b-card-group deck>
         <b-card>
@@ -43,10 +44,16 @@
 <script>
 export default {
   name: 'Login',
+  props: ['error'],
   data () {
     return {}
   },
   methods: {},
+  async mounted () {
+    if (this.$store.state.isLoggedIn && this.$store.state.auth.user) {
+      this.$router.push('dashboard')
+    }
+  },
   async created () {
     if (this.$store.state.isLoggedIn && this.$store.state.auth.user) {
       this.$router.push('dashboard')
