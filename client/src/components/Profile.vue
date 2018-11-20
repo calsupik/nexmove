@@ -1,20 +1,34 @@
 <template>
   <div class="profile">
     <nav-bar></nav-bar>
-    <div class="container">
+    <b-container>
       <h1>Profile</h1>
-      <b-form>
-        <h3>Edit Profile</h3>
-        <p>Username/Email: {{currentUser.username_email}}</p>
-        <b-form-group>
-          <b-form-input v-model="currentUser.first_name" type="text" placeholder="First Name"></b-form-input>
-        </b-form-group>
-        <b-form-group>
-          <b-form-input v-model="currentUser.last_name" type="text" placeholder="Last Name"></b-form-input>
-        </b-form-group>
-      </b-form>
-      <b-btn variant="success" v-on:click="saveUser(currentUser)">Save</b-btn>
-    </div>
+      <h3>Edit Profile</h3>
+
+      <b-row class="justify-content-md-center">
+        <b-alert :show="dismissCountDown" :variant="dismissCountDownVariant" @dismissed="dismissCountDown=0" @dismiss-count-down="countDownChanged" dismissible>
+          <p>{{alertText}}</p>
+          <b-progress :variant="dismissCountDownVariant" :value="dismissCountDown" :max="dismissSecs" height="4px"></b-progress>
+        </b-alert>
+      </b-row>
+
+      <p>Username/Email: {{currentUser.username_email}}</p>
+      <b-row class="justify-content-md-center">
+        <b-card>
+          <b-form>
+            <b-form-group>
+              <label>First Name:</label>
+              <b-form-input v-model="currentUser.first_name" type="text" placeholder="First Name"></b-form-input>
+            </b-form-group>
+            <b-form-group>
+              <label>Last Name:</label>
+              <b-form-input v-model="currentUser.last_name" type="text" placeholder="Last Name"></b-form-input>
+            </b-form-group>
+          </b-form>
+          <b-btn variant="success" v-on:click="saveUser(currentUser)">Save</b-btn>
+        </b-card>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
@@ -23,20 +37,35 @@ import Users from '../factories/Users'
 import NavBar from './Navbar'
 
 export default {
-  name: 'Dashboard',
+  name: 'Profile',
   components: {
     navBar: NavBar
   },
   data () {
     return {
-      currentUser: this.$store.state.auth.user
+      currentUser: this.$store.state.auth.user,
+      dismissSecs: 5,
+      dismissCountDown: 0,
+      dismissCountDownVariant: 'success',
+      alertText: null
     }
   },
   computed: {},
   methods: {
+    countDownChanged (dismissCountDown) {
+      this.dismissCountDown = dismissCountDown
+    },
     async saveUser (user) {
       user.name = user.first_name.trim() + ' ' + user.last_name.trim()
-      await Users.save(user)
+      const response = await Users.save(user)
+
+      this.dismissCountDown = this.dismissSecs
+      if (response >= 400) {
+        this.alertText = 'Error Saving Profile.'
+        this.dismissCountDownVariant = 'warning'
+      } else {
+        this.alertText = 'Profile Saved Successfully!'
+      }
     }
   },
   async mounted () {
@@ -55,10 +84,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1 {
-  margin: 20px
-}
-
-table {
-  margin: 20px 0px
+  margin: 20px;
 }
 </style>

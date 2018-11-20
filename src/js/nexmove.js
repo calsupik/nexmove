@@ -2,6 +2,7 @@
 
 //Database Url Location
 var urlString = 'https://nexmove.herokuapp.com';
+var apiEnpoint = '/api/1.0/';
 
 //Locations Array
 var locations = [];
@@ -249,14 +250,15 @@ var app = {
 
 	//Gets Nearby Locations from Database
 	getLocations: function (type) {
-		var urlStringAddition = type ? '/locations/type/' + type : '/locations/';
+		//var urlStringAddition = type ? '/locations/type/' + type : '/locations/';
 
 		var currentLat = currentLocation.getCenter().lat();
 		var currentLng = currentLocation.getCenter().lng();
 		var distance = locationsDistance;
 		
 		var request = new XMLHttpRequest();
-		request.open('GET', urlString + '/getlocations', true);
+		request.open('GET', urlString + apiEnpoint + 'locations/all', true);
+		request.setRequestHeader('x-api-key', 'nexmove')
 
 		request.onload = function() {
 		  if (request.status >= 200 && request.status < 400) {
@@ -297,7 +299,7 @@ var app = {
 				'<div class="locations-hover-content">' +
 				'</div>' +
 				'</div>' +
-				'<img src="' + urlString + '/images/' + location.img + '"  class="img-responsive img-rounded" alt="">' +
+				'<img src="' + location.img + '"  class="img-responsive img-rounded" alt="">' +
 				'</a>' +
 				'<div class="locations-caption">' +
 				'<h4>' + location.name + '</h4>' +
@@ -323,7 +325,7 @@ var app = {
 				'<div class="modal-body">' +
 				'<h2>' + location.name + '</h2>' +
 				'<p class="item-intro text-muted">' + location.short_desc + '</p>' +
-				'<img class="img-responsive" src="' + urlString + '/images/' + location.img + '" alt="">' +
+				'<img class="img-responsive" src="' + location.img + '" alt="">' +
 				'</br>' +
 				'<p>' + location.long_desc + '</p>' +
 				'<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Close Details</button>' +

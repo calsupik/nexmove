@@ -1,10 +1,10 @@
 <template>
   <div class="dashboard">
     <nav-bar></nav-bar>
-    <div class="container">
+    <b-container>
       <h1>Dashboard</h1>
       <locations></locations>
-    </div>
+    </b-container>
   </div>
 </template>
 
@@ -39,6 +39,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1 {
-  margin: 20px
+  margin: 20px;
 }
 </style>

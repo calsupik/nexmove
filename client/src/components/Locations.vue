@@ -1,8 +1,19 @@
 <template>
-  <div class="container">
+  <b-container>
     <h4>Locations</h4>
-    <b-btn variant="primary" v-on:click="createLocation()">Create New Location</b-btn>
+    <b-btn class="create-location" variant="primary" v-on:click="createLocation()">Create New Location</b-btn>
+
+    <b-row class="justify-content-md-center">
+      <b-alert :show="dismissCountDown" :variant="dismissCountDownVariant" @dismissed="dismissCountDown=0" @dismiss-count-down="countDownChanged" dismissible>
+        <p>{{alertText}}</p>
+        <b-progress :variant="dismissCountDownVariant" :value="dismissCountDown" :max="dismissSecs" height="4px"></b-progress>
+      </b-alert>
+    </b-row>
+
+    <!-- Locations Table -->
     <b-table v-if="locations" :items="locations" :fields="fields" striped hover bordered v-on:row-clicked="(item,index,event) => {toggleEditLocation(item)}"></b-table>
+
+    <!-- Create/Edit Location Modal -->
     <b-modal v-model="editLocationModal" v-if="currentLocation" title="Location">
       <div class="d-block text-center">
         <b-form>
@@ -39,6 +50,8 @@
           <b-btn variant="success" v-on:click="saveLocation(currentLocation)">Save</b-btn>
       </div>
     </b-modal>
+
+    <!-- Delete Location Confirmation Modal -->
     <b-modal v-model="deleteLocationModal" v-if="currentLocation" title="Location">
       <h3>Delete Location</h3>
       <p>Are you sure you want to delete this location?</p>
@@ -47,7 +60,7 @@
           <b-btn variant="danger" v-on:click="deleteLocation(currentLocation)">Delete</b-btn>
       </div>
     </b-modal>
-  </div>
+  </b-container>
 </template>
 
 <script>
@@ -61,6 +74,10 @@ export default {
       currentLocation: null,
       editLocationModal: false,
       deleteLocationModal: false,
+      dismissSecs: 5,
+      dismissCountDown: 0,
+      dismissCountDownVariant: 'success',
+      alertText: null,
       fields: [
         {
           key: 'name',
@@ -106,6 +123,9 @@ export default {
   },
   computed: {},
   methods: {
+    countDownChanged (dismissCountDown) {
+      this.dismissCountDown = dismissCountDown
+    },
     toggleEditLocation (location) {
       this.currentLocation = location || null
       this.editLocationModal = !this.editLocationModal
@@ -114,12 +134,30 @@ export default {
       this.toggleEditLocation({})
     },
     async saveLocation (location) {
-      await Locations.save(location)
+      const response = await Locations.save(location)
+
+      this.dismissCountDown = this.dismissSecs
+      if (response >= 400) {
+        this.alertText = 'Error Saving Location.'
+        this.dismissCountDownVariant = 'warning'
+      } else {
+        this.alertText = 'Location Saved Successfully!'
+      }
+
       this.toggleEditLocation()
       await this.getLocations()
     },
     async deleteLocation (location) {
-      await Locations.delete(location)
+      const response = await Locations.delete(location)
+
+      this.dismissCountDown = this.dismissSecs
+      if (response >= 400) {
+        this.alertText = 'Error Deleting Location.'
+        this.dismissCountDownVariant = 'warning'
+      } else {
+        this.alertText = 'Location Deleted Successfully!'
+      }
+
       this.toggleEditLocation()
       await this.getLocations()
     },
@@ -139,5 +177,9 @@ export default {
 table {
   cursor: pointer;
   margin: 20px 0px;
+}
+
+.create-location {
+  margin: 20px;
 }
 </style>

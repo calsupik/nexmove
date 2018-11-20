@@ -11,10 +11,10 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api': 'http://localhost:8000',
-      '/auth': 'http://localhost:8000',
-      '/logout': 'http://localhost:8000',
-      '/public': 'http://localhost:8000'
+      '/api': 'http://localhost:8080',
+      '/auth': 'http://localhost:8080',
+      '/logout': 'http://localhost:8080',
+      '/public': 'http://localhost:8080'
     },
 
     // Various Dev Server settings

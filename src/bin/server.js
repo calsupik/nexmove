@@ -65,7 +65,7 @@ async function startApp() {
     // Enable CORS for all routes
     app.use(function(req, res, next) {
       res.header("Access-Control-Allow-Origin", "*")
-      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, X-Api-Key")
       res.header("Access-Control-Max-Age", "600")
 
       // Handles preflight request for CORS

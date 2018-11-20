@@ -19,7 +19,7 @@ gulp.task('dev-html', function() {
 //Replace JS with dev JS
 gulp.task('dev-js', function() {
   return gulp.src(indexJS)
-    .pipe(replace('https://nexmove.herokuapp.com','http://localhost:5000'))
+    .pipe(replace('https://nexmove.herokuapp.com','http://localhost:8080'))
     .pipe(replace('document.addEventListener(\'deviceready\', app.onDeviceReady, false);','app.onDeviceReady();'))
     .pipe(gulp.dest('./src/js'))
 });
@@ -35,7 +35,7 @@ gulp.task('prod-html', function() {
 //Replace JS with prod JS
 gulp.task('prod-js', function() {
   return gulp.src(indexJS)
-    .pipe(replace('http://localhost:5000','https://nexmove.herokuapp.com'))
+    .pipe(replace('http://localhost:8080','https://nexmove.herokuapp.com'))
     .pipe(replace('app.onDeviceReady();','document.addEventListener(\'deviceready\', app.onDeviceReady, false);'))
     .pipe(gulp.dest('./src/js'))
 });
@@ -49,13 +49,17 @@ gulp.task('backend', function() {
 })
 
 //Update nexmove.js task
+/*
 gulp.task('prod-api-js', function() {
-  return gulp.src("./dist/js/nexmove.js")
+  return gulp.src(indexJS)
+    .pipe(plumber())
+    .pipe(babel())
     .pipe(gulp.dest("./public/script"))
 })
+*/
 
 //Run dev tasks
 gulp.task('prep-dev', gulp.series([ 'dev-html', 'dev-js', 'backend' ]))
 
 //Run prod tasks
-gulp.task('prep-prod', gulp.series([ 'prod-html', 'prod-js', 'backend', 'prod-api-js' ]))
+gulp.task('prep-prod', gulp.series([ 'prod-html', 'prod-js', 'backend' ]))

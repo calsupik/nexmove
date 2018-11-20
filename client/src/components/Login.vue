@@ -1,8 +1,12 @@
 <template>
-  <b-container fluid>
-    <img src="../assets/logo.png">
+  <b-container>
+    <!--<img src="../assets/logo.png">-->
     <h1>Welcome to NexMove</h1>
-    <p> {{error}} </p>
+    <b-row class="justify-content-md-center">
+      <b-alert variant="danger" dismissible :show="error" @dismissed="error=false">
+        {{errorText}}
+      </b-alert>
+    </b-row>
     <b-row class="justify-content-md-center">
       <b-card-group deck>
         <b-card>
@@ -21,7 +25,7 @@
         </b-card>
         <b-card>
           <b-form action="../auth/createuser" method="post">
-            <h4>Create Account</h4>
+            <h4>New User</h4>
             <b-form-group>
               <b-form-input type="email" placeholder="Enter Email" name="username" required></b-form-input>
             </b-form-group>
@@ -45,6 +49,26 @@
 export default {
   name: 'Login',
   props: ['error'],
+  computed: {
+    errorText: function () {
+      switch (this.error) {
+        case 'incorrectpassword':
+          return 'Incorrect Password'
+        case 'noemail':
+          return 'Email Not Found'
+        case 'nopassword':
+          return 'Password Not Provided'
+        case 'nouser':
+          return 'User Not Found'
+        case 'passwordsdonotmatch':
+          return 'Passwords Do Not Match'
+        case 'usernamealreadyexists':
+          return 'Username Already Exisits'
+        default:
+          return 'An Error Occured'
+      }
+    }
+  },
   data () {
     return {}
   },
@@ -64,4 +88,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.container {
+  padding: 40px 0;
+}
 </style>

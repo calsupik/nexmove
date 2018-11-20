@@ -50,7 +50,7 @@ export default {
 
       // TODO: Support API key authentication here
       const apiKeyProvided = req.headers['x-api-key']
-      if (false)
+      if (apiKeyProvided == 'nexmove')
         return next()
 
       return res.status(401).json({ error: 'Invalid authentication information.' })
