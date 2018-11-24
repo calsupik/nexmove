@@ -1,8 +1,12 @@
 <template>
-  <b-container>
-    <!--<img src="../assets/logo.png">-->
-    <h1>Welcome to NexMove</h1>
+  <div id="login">
     <b-row class="justify-content-md-center">
+      <img src="../assets/logo.png">
+    </b-row>
+    <b-row class="justify-content-md-center">
+      <h1>Welcome to NexMove</h1>
+    </b-row>
+    <b-row class="justify-content-md-center" v-if="error">
       <b-alert variant="danger" dismissible :show="error" @dismissed="error=false">
         {{errorText}}
       </b-alert>
@@ -42,7 +46,7 @@
         </b-card>
       </b-card-group>
     </b-row>
-  </b-container>
+  </div>
 </template>
 
 <script>
@@ -88,7 +92,21 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.container {
-  padding: 40px 0;
+#login {
+  background: linear-gradient(-45deg, #F89B3B 33%, transparent 0%), linear-gradient(-45deg, #696BAE 100%, transparent 33%);
+  padding: 40px;
+}
+
+.row {
+  padding: 10px;
+}
+
+h1 {
+  color: white;
+}
+
+.card {
+  text-align: center;
+  box-shadow: 6px 3px 3px rgba(0, 0, 0, 0.2);
 }
 </style>

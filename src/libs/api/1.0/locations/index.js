@@ -5,7 +5,8 @@ import config from '../../../../config'
 export default {
   async all({ req, res, postgres }) {
     const locations = new Locations(postgres)
-    const rows = await locations.getAll()
+    const info = req.body
+    const rows = info.type ? await locations.getAllBy(info) : await locations.getAll()
     res.json(rows)
   },
 

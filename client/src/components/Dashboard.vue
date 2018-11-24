@@ -1,8 +1,8 @@
 <template>
-  <div class="dashboard">
+  <div id="dashboard">
     <nav-bar></nav-bar>
     <b-container>
-      <h1>Dashboard</h1>
+      <h1 class="text-center">Dashboard</h1>
       <locations></locations>
     </b-container>
   </div>
@@ -39,6 +39,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1 {
-  margin: 20px;
+  padding: 20px;
 }
 </style>

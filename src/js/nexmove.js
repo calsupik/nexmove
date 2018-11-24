@@ -250,32 +250,28 @@ var app = {
 
 	//Gets Nearby Locations from Database
 	getLocations: function (type) {
-		//var urlStringAddition = type ? '/locations/type/' + type : '/locations/';
-
 		var currentLat = currentLocation.getCenter().lat();
 		var currentLng = currentLocation.getCenter().lng();
 		var distance = locationsDistance;
 		
-		var request = new XMLHttpRequest();
-		request.open('GET', urlString + apiEnpoint + 'locations/all', true);
-		request.setRequestHeader('x-api-key', 'nexmove')
-
-		request.onload = function() {
-		  if (request.status >= 200 && request.status < 400) {
-				var locations = JSON.parse(request.responseText)
-				app.loadLocations(locations);
-		  } else {
-				//Request Error
-				//console.log('Request Error')
-		  }
-		};
-		
-		request.onerror = function() {
-		  //Connection Error
-		  //console.log('Connection Error')
-		};
-		
-		request.send();
+		fetch(urlString + apiEnpoint + 'locations/all', {
+			method : "POST",
+			mode: "cors", // no-cors, cors, *same-origin
+			headers: {
+				"Content-Type": "application/json; charset=utf-8",
+				"X-Api-Key": "nexmove"
+			},
+			body: JSON.stringify({
+					type: type
+					//currentLat: currentLat,
+					//currentLng: currentLng,
+					//distance: distance
+			})
+		}).then(
+			response => {return response.json()}
+		).then(
+			json => {app.loadLocations(json)}
+		)
 
 	},
 

@@ -1,9 +1,9 @@
 <template>
-  <div class="profile">
+  <div id="profile">
     <nav-bar></nav-bar>
     <b-container>
-      <h1>Profile</h1>
-      <h3>Edit Profile</h3>
+      <h1 class="text-center">Profile</h1>
+      <h4 class="text-center">Edit Profile</h4>
 
       <b-row class="justify-content-md-center">
         <b-alert :show="dismissCountDown" :variant="dismissCountDownVariant" @dismissed="dismissCountDown=0" @dismiss-count-down="countDownChanged" dismissible>
@@ -12,7 +12,10 @@
         </b-alert>
       </b-row>
 
-      <p>Username/Email: {{currentUser.username_email}}</p>
+      <b-row class="justify-content-md-center">
+        <p>Username/Email: {{currentUser.username_email}}</p>
+      </b-row>
+
       <b-row class="justify-content-md-center">
         <b-card>
           <b-form>
@@ -84,6 +87,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1 {
-  margin: 20px;
+  padding: 20px;
+}
+
+.card {
+  text-align: center;
 }
 </style>
