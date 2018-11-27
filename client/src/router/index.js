@@ -1,16 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
-import Dashboard from '@/components/Dashboard'
-import Profile from '@/components/Profile'
+import Container from '@/components/Container'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     { path: '/autherror/:error', component: Login, props: true },
-    { path: '/profile', name: 'Profile', component: Profile },
-    { path: '/dashboard', name: 'Dashboard', component: Dashboard },
+    { path: '/:currentView', component: Container, props: true },
     { path: '*', name: 'Login', component: Login }
   ]
 })

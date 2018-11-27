@@ -1,37 +1,37 @@
 <template>
-  <div id="profile">
-    <nav-bar></nav-bar>
-    <b-container>
-      <h1 class="text-center">Profile</h1>
-      <h4 class="text-center">Edit Profile</h4>
+  <div id="profile" class="container-fluid">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#/profile">Profile</a>
+      </li>
+      <li class="breadcrumb-item active">Edit Profile</li>
+    </ol>
 
-      <b-row class="justify-content-md-center">
-        <b-alert :show="dismissCountDown" :variant="dismissCountDownVariant" @dismissed="dismissCountDown=0" @dismiss-count-down="countDownChanged" dismissible>
-          <p>{{alertText}}</p>
-          <b-progress :variant="dismissCountDownVariant" :value="dismissCountDown" :max="dismissSecs" height="4px"></b-progress>
-        </b-alert>
-      </b-row>
-
-      <b-row class="justify-content-md-center">
-        <p>Username/Email: {{currentUser.username_email}}</p>
-      </b-row>
-
-      <b-row class="justify-content-md-center">
+    <!-- Profile Information -->
+    <b-row>
+      <div class="col-xl-3 col-sm-6 mb-3">
         <b-card>
-          <b-form>
-            <b-form-group>
-              <label>First Name:</label>
-              <b-form-input v-model="currentUser.first_name" type="text" placeholder="First Name"></b-form-input>
-            </b-form-group>
-            <b-form-group>
-              <label>Last Name:</label>
-              <b-form-input v-model="currentUser.last_name" type="text" placeholder="Last Name"></b-form-input>
-            </b-form-group>
-          </b-form>
+          <b-row class="justify-content-md-center">
+            <p><b>Username/Email:</b> {{currentUser.username_email}}</p>
+          </b-row>
+          <b-row>
+            <b-col sm="3"><p><b>First Name:</b></p></b-col>
+            <b-col sm="9"><b-form-input v-model="currentUser.first_name" type="text" placeholder="First Name"></b-form-input></b-col>
+          </b-row>
+          <b-row>
+            <b-col sm="3"><p><b>Last Name:</b></p></b-col>
+            <b-col sm="9"><b-form-input v-model="currentUser.last_name" type="text" placeholder="Last Name"></b-form-input></b-col>
+          </b-row>
           <b-btn variant="success" v-on:click="saveUser(currentUser)">Save</b-btn>
         </b-card>
-      </b-row>
-    </b-container>
+      </div>
+    </b-row>
+
+    <!-- Confirmation Alert -->
+    <b-alert :show="dismissCountDown" :variant="dismissCountDownVariant" @dismissed="dismissCountDown=0" @dismiss-count-down="countDownChanged" dismissible>
+      <p>{{alertText}}</p>
+      <b-progress :variant="dismissCountDownVariant" :value="dismissCountDown" :max="dismissSecs" height="4px"></b-progress>
+    </b-alert>
   </div>
 </template>
 
@@ -47,7 +47,7 @@ export default {
   data () {
     return {
       currentUser: this.$store.state.auth.user,
-      dismissSecs: 5,
+      dismissSecs: 4,
       dismissCountDown: 0,
       dismissCountDownVariant: 'success',
       alertText: null
@@ -71,26 +71,18 @@ export default {
       }
     }
   },
-  async mounted () {
-    if (!this.$store.state.isLoggedIn || !this.$store.state.auth.user) {
-      this.$router.push('login')
-    }
-  },
-  async created () {
-    if (!this.$store.state.isLoggedIn || !this.$store.state.auth.user) {
-      this.$router.push('login')
-    }
-  }
+  async mounted () {},
+  async created () {}
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1 {
-  padding: 20px;
-}
-
+<style lang="scss" scoped>
 .card {
-  text-align: center;
+  text-align: right;
+
+  .row {
+    padding: 10px;
+  }
 }
 </style>

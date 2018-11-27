@@ -1,11 +1,8 @@
 <template>
-  <b-navbar toggleable="md" type="dark" variant="primary">
+  <b-navbar toggleable="md" class="navbar-dark bg-dark static-top">
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
     <b-navbar-brand href="/#/dashboard">NexMove</b-navbar-brand>
     <b-collapse is-nav id="nav_collapse">
-      <b-navbar-nav>
-        <b-nav-item href="/#/dashboard">Dashboard</b-nav-item>
-      </b-navbar-nav>
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
         <b-nav-item-dropdown :text="user.first_name || user.username_email" right>
@@ -34,4 +31,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.navbar {
+  box-shadow: 4px 3px 3px rgba(0, 0, 0, 0.2);
+}
 </style>

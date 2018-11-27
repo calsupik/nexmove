@@ -1,18 +1,11 @@
 <template>
-  <div id="locations">
-    <h4 class="text-center">Locations</h4>
-
-    <b-row class="justify-content-md-center">
-      <b-btn class="create-location" variant="primary" v-on:click="createLocation()">Create New Location</b-btn>
-    </b-row>
-
-    <!-- Confirmation Alert -->
-    <b-row class="justify-content-md-center" v-if="dismissCountDown">
-      <b-alert :show="dismissCountDown" :variant="dismissCountDownVariant" @dismissed="dismissCountDown=0" @dismiss-count-down="countDownChanged" dismissible>
-        <p>{{alertText}}</p>
-        <b-progress :variant="dismissCountDownVariant" :value="dismissCountDown" :max="dismissSecs" height="4px"></b-progress>
-      </b-alert>
-    </b-row>
+  <div id="locations" class="container-fluid">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#/dashboard">Locations</a>
+      </li>
+      <li class="breadcrumb-item active">Table</li>
+    </ol>
 
     <!-- Locations Table -->
     <b-table v-if="locations" :items="locations" :fields="fields" striped hover bordered>
@@ -20,17 +13,20 @@
         <b-btn size="sm" v-on:click.stop="toggleEditLocation(row.item)" class="mr-1">
           Edit
         </b-btn>
-        <b-btn variant="danger" size="sm" v-on:click.stop="deleteLocationModal=true">
+        <b-btn variant="danger" size="sm" v-on:click.stop="currentLocation=row.item;deleteLocationModal=true">
           Delete
         </b-btn>
       </template>
     </b-table>
 
+    <b-row>
+      <b-btn class="create-location" variant="primary" v-on:click="createLocation()">Create New Location</b-btn>
+    </b-row>
+
     <!-- Create/Edit Location Modal -->
-    <b-modal v-model="editLocationModal" v-if="currentLocation" title="Location">
+    <b-modal v-model="editLocationModal" v-if="currentLocation" title="Edit Location">
       <div class="d-block text-center">
         <b-form>
-          <h3>Edit Location</h3>
           <b-form-group>
             <b-form-input v-model="currentLocation.name" type="text" placeholder="Name"></b-form-input>
           </b-form-group>
@@ -64,16 +60,21 @@
     </b-modal>
 
     <!-- Delete Location Confirmation Modal -->
-    <b-modal v-model="deleteLocationModal" v-if="currentLocation" title="Location">
+    <b-modal v-model="deleteLocationModal" v-if="currentLocation" title="Delete Location">
       <div class="d-block text-center">
-        <h3>Delete Location</h3>
         <p>Are you sure you want to delete this location?</p>
       </div>
       <div slot="modal-footer">
-          <b-btn v-on:click="deleteLocationModal=false">Cancel</b-btn>
+          <b-btn v-on:click="currentLocation=null;deleteLocationModal=false">Cancel</b-btn>
           <b-btn variant="danger" v-on:click="deleteLocation(currentLocation)">Delete</b-btn>
       </div>
     </b-modal>
+
+    <!-- Confirmation Alert -->
+    <b-alert :show="dismissCountDown" :variant="dismissCountDownVariant" @dismissed="dismissCountDown=0" @dismiss-count-down="countDownChanged" dismissible>
+      <p>{{alertText}}</p>
+      <b-progress :variant="dismissCountDownVariant" :value="dismissCountDown" :max="dismissSecs" height="4px"></b-progress>
+    </b-alert>
   </div>
 </template>
 
@@ -88,7 +89,7 @@ export default {
       currentLocation: null,
       editLocationModal: false,
       deleteLocationModal: false,
-      dismissSecs: 5,
+      dismissSecs: 4,
       dismissCountDown: 0,
       dismissCountDownVariant: 'success',
       alertText: null,
@@ -129,6 +130,7 @@ export default {
       await this.getLocations()
     },
     async deleteLocation (location) {
+      this.deleteLocationModal = false
       const response = await Locations.delete(location)
 
       this.dismissCountDown = this.dismissSecs
@@ -139,7 +141,6 @@ export default {
         this.alertText = 'Location Deleted Successfully!'
       }
 
-      this.toggleEditLocation()
       await this.getLocations()
     },
     async getLocations () {
@@ -154,8 +155,10 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.row{
-  padding: 10px;
+<style lang="scss" scoped>
+#locations {
+  .row{
+    padding: 10px;
+  }
 }
 </style>

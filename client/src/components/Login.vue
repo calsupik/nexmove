@@ -1,5 +1,5 @@
 <template>
-  <div id="login">
+  <div id="login" class="bg-dark">
     <b-row class="justify-content-md-center">
       <img src="../assets/logo.png">
     </b-row>
@@ -91,22 +91,22 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
 #login {
-  background: linear-gradient(-45deg, #F89B3B 33%, transparent 0%), linear-gradient(-45deg, #696BAE 100%, transparent 33%);
+  min-height: calc(100vh);
   padding: 40px;
-}
 
-.row {
-  padding: 10px;
-}
+  .row {
+    padding: 10px;
 
-h1 {
-  color: white;
-}
+    h1 {
+      color: white;
+    }
 
-.card {
-  text-align: center;
-  box-shadow: 6px 3px 3px rgba(0, 0, 0, 0.2);
+    .card {
+      text-align: center;
+      box-shadow: 6px 3px 3px rgba(0, 0, 0, 0.2);
+    }
+  }
 }
 </style>

@@ -14,9 +14,12 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.8",
     "bootstrap-vue": "^2.0.0-rc.11",
     "fetch-defaults": "^1.0.0",
     "jquery": "^3.3.1",
+    "node-sass": "^4.10.0",
+    "sass-loader": "^7.1.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
