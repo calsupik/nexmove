@@ -13,5 +13,5 @@ npm run migrate
 
 gulp prep-dev
 
-npm start
+npm run dev
 ```
