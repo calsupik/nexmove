@@ -1,24 +1,25 @@
-const appName = process.env.APP_NAME || "nexmove"
+const appName = process.env.APP_NAME || "NexMove"
 
 export default {
   app: {
-    name: appName
+    name: appName,
+    host: process.env.APP_HOST || "http://localhost:3030"
   },
 
   server: {
-    IS_PRODUCTION:    process.env.NODE_ENV === 'production',
-    PORT:             process.env.PORT || 8080,
-    WEB_CONCURRENCY:  parseInt(process.env.WEB_CONCURRENCY || 1),
-    HOST:             process.env.HOSTNAME || "http://localhost:8080"
+    is_production:    process.env.NODE_ENV === 'production',
+    port:             process.env.PORT || 8080,
+    web_concurrency:  parseInt(process.env.WEB_CONCURRENCY || 1),
+    host:             process.env.SERVER_HOST || "http://localhost:8080"
   },
 
   auth: {
-    GLOBAL_ADMIN: process.env.GLOBAL_ADMIN,
-    GLOBAL_PASSWORD: process.env.GLOBAL_PASSWORD
+    global_admin: process.env.GLOBAL_ADMIN,
+    global_password: process.env.GLOBAL_PASSWORD
   },
 
   session: {
-    sessionSecret: process.env.SESSION_SECRET || 'nexmove05041992',
+    sessionSecret: process.env.SESSION_SECRET || 'nm05041992',
     sessionCookieKey: process.env.SESSION_COOKIE_KEY || 'nexmove'
   },
 
@@ -36,7 +37,7 @@ export default {
   },
 
   slack: {
-    webhookUrl: process.env.SLACK_WEBHOOK_URL
+    webhook_url: process.env.SLACK_WEBHOOK_URL
   },
 
   logger: {
@@ -44,6 +45,16 @@ export default {
       name:   appName,
       level:  process.env.LOGGING_LEVEL || "info",
       stream: process.stdout
+    }
+  },
+
+  mailer: {
+    transporterConfig: {
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
     }
   }
 }

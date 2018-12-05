@@ -8,6 +8,7 @@ export async function handleFetchResponse (response, type = 'json') {
       } else {
         errorInfo = typeParser.error
       }
+      throw new Error(errorInfo || response)
     } catch (e) {
       throw new Error(errorInfo || response || e)
     }

@@ -31,7 +31,7 @@ const log         = bunyan.createLogger(config.logger.options)
 // throng allows for multiple processes based on
 // concurrency configurations (i.e. num CPUs available.)
 throng({
-  workers:  config.server.WEB_CONCURRENCY,
+  workers:  config.server.web_concurrency,
   lifetime: Infinity,
   grace:    8000,
   start:    startApp
@@ -121,7 +121,7 @@ async function startApp() {
     passport.serializeUser((user, done) => done(null, user))
     passport.deserializeUser((user, done) => done(null, user))
 
-    httpServer.listen(config.server.PORT, () => log.info(`listening on *: ${config.server.PORT}`))
+    httpServer.listen(config.server.port, () => log.info(`listening on *: ${config.server.port}`))
 
   } catch(err) {
     log.error("Error starting server", err)

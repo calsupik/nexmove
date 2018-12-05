@@ -17,8 +17,8 @@ export default function LocalPassportStrategy({ postgres, redis }) {
         const users = Users(postgres, req.session)
         const login = LoginHandler(postgres, req.session)
 
-        if (username && username == config.auth.GLOBAL_ADMIN)
-          return done(null, (users.validateUserPassword(username, password, config.auth.GLOBAL_PASSWORD) ? username : false))
+        if (username && username == config.auth.global_admin)
+          return done(null, (users.validateUserPassword(username, password, config.auth.global_password) ? username : false))
 
         const userRecord = await users.findBy({ username_email: username })
         if (!userRecord)

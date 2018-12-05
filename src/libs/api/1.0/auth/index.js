@@ -1,5 +1,6 @@
 import objectAssignDeep from 'object-assign-deep'
 import SessionHandler from '../../../SessionHandler'
+import Mailer from '../../../Mailer'
 import Users from '../../../models/Users'
 import config from '../../../../config'
 
@@ -16,7 +17,7 @@ export default {
     const key     = req.body.key || '__temp'
 
     if (data.toString() !== '[object Object]')
-      return res.status(400).json({ error: res.__("Make sure you pass an object to add to the session.") })
+      return res.status(400).json({ error: "Make sure you pass an object to add to the session." })
 
     users.setSession({ [ key ]: objectAssignDeep(req.session[key] || {}, data) })
     res.json(true)
@@ -42,18 +43,22 @@ export default {
 
     const userRecord = await users.findBy({ username_email: username })
     if (!userRecord)
-      return res.status(404).json({ error: res.__(`We didn't find a user record with the email address provided.`) })
+      return res.status(404).json({ error: "User Record Not Found." })
 
     const tempPassword  = users.generateTempPassword()
     const tempPwHash    = await users.hashPassword(tempPassword)
     users.setRecord({ id: userRecord.id, needs_password_reset: true, password_hash: tempPwHash })
     await users.save()
 
-    await queue.connect()
-    await queue.enqueue(config.resque.default_queue, 'forgotPasswordMailer', [{
-      user_email: userRecord.username_email,
-      temp_pw:    tempPassword
-    }])
+    const mailer = Mailer()
+    mailer.send({
+      to: username,
+      subject: `${config.app.name}: Temporary Password`,
+      html: `<div> Your temporary password to login to ${config.app.name} is below:
+              <div style="margin:25px 0px"><strong>${tempPassword}</strong></div>
+              <div><a href="${config.app.host}"> Login Now! </a></div>
+            </div>`
+    })
 
     res.json(true)
   },
@@ -67,14 +72,14 @@ export default {
 
     if (userRec.password_hash) {
       if (!currentPassword)
-        return res.status(401).json({ error: res.__(`Please enter your current password to validate before changing.`) })
+        return res.status(401).json({ error: "Please enter your current password to validate before changing." })
 
       if (currentPassword === newPassword)
-        return res.status(400).json({ error: res.__(`Please enter a different password than your previous one.`) })
+        return res.status(400).json({ error: "Please enter a different password than your previous one." })
 
       const isCurrentPasswordCorrect = await users.validateUserPassword(userRec.username_email, currentPassword)
       if (!isCurrentPasswordCorrect)
-        return res.status(401).json({ error: res.__(`The current password you provided is not correct. Please try again.`) })
+        return res.status(401).json({ error: "The current password you provided is not correct. Please try again." })
     }
 
     const newHashedPassword = await users.hashPassword(newPassword)

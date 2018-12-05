@@ -1,69 +1,62 @@
 import { handleFetchResponse } from './ApiHelpers'
 
 export default {
-  async getLoggedInUser () {
-    const response = await window.nexmoveFetch(`/api/1.0/auth/session`)
-    return handleFetchResponse(response)
-  }
-
-  /*
-  async setRedirect(targetUrl) {
-    const response = await nexmoveFetch(`/api/1.0/auth/redirect/set`, {
+  async setRedirect (targetUrl) {
+    const response = await window.nexmoveFetch(`/api/1.0/auth/redirect/set`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ target: targetUrl })
     })
-    return await handleFetchResponse(response)
+    return handleFetchResponse(response)
   },
 
-  async setSession(key, data) {
-    const response = await nexmoveFetch(`/api/1.0/auth/session/set`, {
+  async setSession (key, data) {
+    const response = await window.nexmoveFetch(`/api/1.0/auth/session/set`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ key, data })
     })
-    return await handleFetchResponse(response)
+    return handleFetchResponse(response)
   },
 
-  async forgotPassword(email) {
-    const response = await nexmoveFetch(`/api/1.0/auth/password/forgot`, {
+  async forgotPassword (email) {
+    const response = await window.nexmoveFetch(`/api/1.0/auth/password/forgot`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email })
     })
-    return await handleFetchResponse(response)
+    return handleFetchResponse(response)
   },
 
-  async resetPassword({ current_password, new_password }) {
-    const response = await nexmoveFetch(`/api/1.0/auth/password/reset`, {
+  async resetPassword ({ currentPassword, newPassword }) {
+    const response = await window.nexmoveFetch(`/api/1.0/auth/password/reset`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ current_password, new_password })
+      body: JSON.stringify({ current_password: currentPassword, new_password: newPassword })
     })
-    return await handleFetchResponse(response)
+    return handleFetchResponse(response)
   },
 
-  async getLoggedInUser() {
-    const response = await nexmoveFetch(`/api/1.0/auth/session`)
-    return await handleFetchResponse(response)
+  async getLoggedInUser () {
+    const response = await window.nexmoveFetch(`/api/1.0/auth/session`)
+    return handleFetchResponse(response)
   },
 
-  async checkUsernameAvailability(username) {
-    const response = await nexmoveFetch(`/api/1.0/auth/username/available?username=${encodeURIComponent(username)}`)
-    return await handleFetchResponse(response)
+  async checkUsernameAvailability (username) {
+    const response = await window.nexmoveFetch(`/api/1.0/auth/username/available?username=${encodeURIComponent(username)}`)
+    return handleFetchResponse(response)
   },
 
-  async getLoggedInUsersIntegrations() {
-    const response = await nexmoveFetch(`/api/1.0/auth/integrations/get`)
-    return await handleFetchResponse(response)
+  async getLoggedInUsersIntegrations () {
+    const response = await window.nexmoveFetch(`/api/1.0/auth/integrations/get`)
+    return handleFetchResponse(response)
   },
 
-  isValidEmail(text='') {
+  isValidEmail (text = '') {
     return /^.+@.+\.([a-zA-Z\d]{2,5})$/.test(text)
   },
 
-  isValidTeamId(id='') {
+  isValidTeamId (id = '') {
     return /^[a-z\d]{5,8}$/.test((id || '').toLowerCase())
   }
-  */
 }

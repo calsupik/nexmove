@@ -9,18 +9,18 @@
 
     <!-- Profile Information -->
     <b-row>
-      <div class="col-xl-3 col-sm-6 mb-3">
+      <div>
         <b-card>
           <b-row class="justify-content-md-center">
             <p><b>Username/Email:</b> {{currentUser.username_email}}</p>
           </b-row>
           <b-row>
-            <b-col sm="3"><p><b>First Name:</b></p></b-col>
-            <b-col sm="9"><b-form-input v-model="currentUser.first_name" type="text" placeholder="First Name"></b-form-input></b-col>
+            <b-col><p><b>First Name</b></p></b-col>
+            <b-col><b-form-input v-model="currentUser.first_name" type="text" placeholder="First Name"></b-form-input></b-col>
           </b-row>
           <b-row>
-            <b-col sm="3"><p><b>Last Name:</b></p></b-col>
-            <b-col sm="9"><b-form-input v-model="currentUser.last_name" type="text" placeholder="Last Name"></b-form-input></b-col>
+            <b-col><p><b>Last Name</b></p></b-col>
+            <b-col><b-form-input v-model="currentUser.last_name" type="text" placeholder="Last Name"></b-form-input></b-col>
           </b-row>
           <b-btn variant="success" v-on:click="saveUser(currentUser)">Save</b-btn>
         </b-card>
